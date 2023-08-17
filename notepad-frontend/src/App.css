@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*USER CLASS CSS*/
+.LoginDiv,
+.RegisterDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 35em;
+    height: 21em;
+    border-radius: .4em .4em 0 0;
+}
+
+.loginForm,
+.RegisterForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 1em .5em 1em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.loginForm .LoginInput,
+.RegisterInput {
+    margin: .7em;
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    font-size: 1em;
+    outline: none;
+    border: none;
+    padding: 1em;
+    border-radius: .5em;
+    background-color: rgba(240, 240, 240, 0.712);
+    appearance: textfield;
+}
+
+.LoginButton,
+.RegisterButton {
+    border-radius: .5em;
+    font-size: 1em;
+    height: 3em;
+    width: 20em;
+    border: none;
+    font-weight: bold;
+    transition: ease-in-out .2s;
+    color: rgb(0, 0, 0);
+}
+
+.LoginButton:hover,
+.RegisterButton:hover {
+    background-color: rgba(2, 128, 2, 0.644);
+    cursor: pointer;
+    color: white;
+}
+
+.LoginRegForButton {
+    border: none;
+    background-color: transparent;
+    color: rgb(45, 128, 153);
+    transition: ease-in-out .5s;
+}
+
+.LoginRegForButton:hover {
+    color: rgba(45, 128, 153, 0.582);
+    cursor: pointer;
+}
+
+/*COMPONENTS CLASS CSS*/
+.NavbarDiv {
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: end;
+}
+
+.NavbarClickButton {
+    width: 8em;
+    border: none;
+    margin: .5em;
+    border-radius: .2em;
+    font-weight: bold;
+    background-color: transparent;
+    transition: ease-in-out .3s;
+}
+
+.NavbarClickButton:hover {
+    font-size: .9em;
+    cursor: pointer;
+}
