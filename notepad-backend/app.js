@@ -1,7 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import conn from './db.js';
+import cookieParser from 'cookie-parser';
 import { CheckUser } from './src/middlewares/authMiddleWare.js'
+import userRoute from "./src/routes/userRoute.js";
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 
 dotenv.config(); // ENV dosyasına erişim
 
@@ -11,8 +16,51 @@ const app = express();
 
 const port = process.env.PORT;
 
+
+// Static files middleware
+app.use(express.json()); // Json veriyi yazmak için
+
+//Cookie yaparken kullandıklarım.
+app.use(cookieParser()); // Cookie ye çerezleri göndermek için ekliyoruz
+app.use(bodyParser.urlencoded({ extended: true })); // Eğerki bu durumu belirtmez isek put ve post isteği atamayız.
+app.use(cors({
+    origin: ['http://localhost:3000'], //Hedef gösterme
+    methods: ['GET', 'POST'],
+    credentials: true,
+    optionsSuccessStatus: 200
+})) // Frontend den gelen istekleri backende iletmesini sağlayan paket
+app.use(
+    session({
+        key: "jwt",
+        secret: "secret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            exprires: 60 * 60 * 24,
+        },
+    })
+)
+app.get("/Dashboard",(req,res) => { // Cookie isteği için yaptık bu sayfaya her geldiğinde istek atıcak
+    if(req.session.user){
+        res.send({loggedIn:true, user: reg.session.user})
+    }else{
+        res.send({loggedIn:false,})
+    }
+})
+
+// app.use(function (req, res, next) { //Coocie ye izin vermesi için yapmaya çalıştığım prosedür 
+//     res.header('Content-Type', 'application/json;charset=UTF-8')
+//     res.header('Access-Control-Allow-Credentials', true)
+//     res.header(
+//         'Access-Control-Allow-Headers',
+//         'Origin, X-Requested-With, Content-Type, Accept'
+//     )
+//     next();
+// })
+
 // Route
-app.get('*', CheckUser);
+app.get('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir
+app.use("/Users", userRoute);
 
 app.listen(port, () => {
     console.log(`Port çalıştı : ${port}`);

@@ -11,7 +11,7 @@ const userSchema = new Schema(
             type: String,
             required: [true, "Fullname Girmediniz."], // Buraya sadece true yazmak yeterli (Bu alanın zorunlu olduğunu belirtiyoruz) fakat burda hata mesajı yazdırmak için bu şekilde yazmak daha doğru.
             lowercase: true, // Kullanıcı ne girerse girsin küçük harfe döndürür
-            validate: [validator.isAlphanumeric, "Sadece sayı ve harf girmelisiniz."],
+            validate: [validator.isAscii, "Sadece sayı ve harf girmelisiniz."],
         },
         Email: {
             type: String,

@@ -5,7 +5,8 @@ const axiosInstance = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
-  baseURL:'http://localhost:5000'
+  baseURL: 'http://localhost:5000',
+  withCredentials: true    // Bunu Cookie için yapmamız lazım
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -18,7 +19,7 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     if (error.response?.status === 401) {
-      storage.setKeyWithValue("token","");
+      storage.setKeyWithValue("jwt", "");
       if (window.location.pathname !== '/Login')
         window.location.assign('/Login');
 
@@ -29,8 +30,8 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-const setApiToken = (token) => {
-  axiosInstance.defaults.headers.common["token"] = token;
+const setApiToken = (jwt) => {
+  axiosInstance.defaults.headers.common["jwt"] = jwt;
 };
 
 export { axiosInstance, setApiToken };

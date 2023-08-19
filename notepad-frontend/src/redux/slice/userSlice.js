@@ -6,9 +6,10 @@ const userSlice = createSlice({
         isAuth:false,
         user:{
             id:"",
-            fullName:"",
-            email:"",
-            password:"",
+            FullName:"",
+            Email:"",
+            Password:"",
+            Phone:"",
         },
         token:"",
     },
@@ -17,6 +18,10 @@ const userSlice = createSlice({
             state.user = {...action.payload.user};
             state.isAuth = true;
             state.token = action.payload.token;
+        },
+        set:(state,action) => {
+            state.user = {...action.payload.user};
+            state.isAuth = true;
         },
         logout:(state) => {
             state.user = {

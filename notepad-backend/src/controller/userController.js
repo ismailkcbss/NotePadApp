@@ -1,4 +1,4 @@
-import User from '../models/userModel';
+import User from '../models/userModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
 
@@ -12,6 +12,7 @@ import jwt from 'jsonwebtoken'
 415 = DESTEKLENMEYEN MEDYA TÜRÜ / UNSUPPORTED MEDİA TYPE
 500 = INTERNAL SERVER ERROR
 */
+
 
 const CreateUser = async (req, res) => { // Kullanıcı kayıt fonksiyonu
     try {
@@ -30,18 +31,20 @@ const CreateUser = async (req, res) => { // Kullanıcı kayıt fonksiyonu
             });
         }
         res.status(400).json(errors2); // Eğer girilen bilgilerde yanlışlık var ise hatayı ekrana json verisi şeklinde basıyoruz.
+        console.log(error);
     }
 }
 
 const LoginUser = async (req, res) => {
     try {
         const { Email, Password } = req.body; // Body den gelen email ve parolayı alıyoruz.
-        const user = await User.findOne({ Email: Email }) // Bu kısımda body den gelen email ile user modalımızda aynı emaile ait birisi varmı diye kontrol ediyoruz.
+        const user = await User.findOne({ Email }) // Bu kısımda body den gelen email ile user modalımızda aynı emaile ait birisi varmı diye kontrol ediyoruz.
 
         let check = false; // Kullanıcı girip girmediğini kontrol etmek için değişken atadık.
 
         if (user) { // Eğerki yukarıdaki arama işleminden bir kullanıcı olduğu için ture cevabı aldıysak eğer parola kontrolü yapıcaz
             check = await bcrypt.compare(Password, user.Password) // Bu işlem bize true ya da false dönecek işlemin içeriği ise daha önce kayır işleminde bcrypt edilmiş şifreyi çözüp inputa girilen şifre ile karşılaştırmak için
+
         } else {
             return res.status(401).json({ // Eğerki girilen emaile daha önce kayıtlı değilse json olarak cevap dönüyoruz.
                 succeded: false,
@@ -50,12 +53,16 @@ const LoginUser = async (req, res) => {
         }
 
         if (check) { // Yukarıdaki işlem başarılı bir şekilde olduysa check değişkeni true olmuştur ve artık token oluşturup cookie de saklayabiliriz.
-            const token = createToken(user._id) // DB de oluşan tabloda user lar için _id kelimesi ile tuttuğumuz için bu şekilde yazdık. Burda yaptığımız işlem ise token anahtar kelimesi içine userID yi kullarak token oluşturduk.
+            const token = CreateToken(user._id) // DB de oluşan tabloda user lar için id yi _id kelimesi ile tuttuğumuz için bu şekilde yazdık. Burda yaptığımız işlem ise token anahtar kelimesi içine userID yi kullarak token oluşturduk.
             res.cookie("jwt", token, { // ilk değişken cookie de tutulacak isim, ikincisi tutulacak veri, üçüncü durumda hem  hem de milisaniye cinsinden cookie süresi belirleniyor.
-                httpOnly: true, // JavaScript ile herhangi bir manipüle edilmemesi için yapılmış olan sadece http isteklerinde kullanmak için güvenlik önlemi
+                httpOnly: false, // JavaScript ile herhangi bir manipüle edilmemesi için yapılmış olan sadece http isteklerinde kullanmak için güvenlik önlemi
                 maxAge: 1000 * 60 * 60 * 24 // Milisaniye cinsinden cookie süresini belirlemek için kullanılır bizde 1 güne eşitledik
             })
-            res.redirect("/Users/Dashboard"); // koşul içinde cookileme işlemi bittikten sonra erişimi kısıtlı olan sadece giriş yapan kişi sayfasına yönlendiriyoruz
+            res.status(201).json({ // Başarılı giriş olursa json olarak bilgilerini dönüyorum.
+                succeded: true,
+                user,
+                token,
+            })
         } else { // Bu durumda check false gelmiştir ve kullanıcı parolasını yanlış yazmıştır bunun için bir json cevabı dönüyoruz.
             res.status(401).json({
                 succeded: false,
@@ -67,6 +74,48 @@ const LoginUser = async (req, res) => {
             succeded: false,
             error,
         });
+        console.log(error);
+    }
+}
+
+const GetAllUser = async (req, res) => {
+    try {
+        const user = await User.find({})
+        res.status(200).json({
+            succeded: true,
+            user
+        })
+    } catch (error) {
+        res.status(500).json({
+            succeded: false,
+            error,
+        });
+        console.log(error);
+    }
+}
+
+const UserMe = async (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => { // Coocieden gelen token bizim üretmiş olduğumuz bir token olup olmadığını çözümlüyoruz eğerki evetse işlemlerine devam ediyor.
+            if (err) { // Hata durumunda mesajı döner.
+                res.status(401).json({
+                    succeded:false,
+                    err
+                }) // Error veriyorsa eğer böyle bir kullanıcı yok demektir ve bu durumda null atarız.
+                next(); // Sonraki işleme geçmesini sağlar.
+            } else {
+                const user = await User.findById(decodedToken.userId);// DB de bulunan kayıtlı kişi varmı yok mu ona bakıyoruz eğerki varsa userid ile tokenı eşliyoruz ve işleme devam etmesini sağlıyor
+                res.status(200).json({
+                    succeded:true,
+                    user
+                }) // Eğerki yukarıda kullanıcı eşlenmesi oldu ise bu kullanıcıyı localde tanımlıyoruz ve cevap olarak atıyoruz.
+                next();
+            }
+        });
+    } else { // Yularıda en basşında token yok ise cevap olarak null atayıp yolluyoruz 
+        res.locals.user = null;
+        next();
     }
 }
 
@@ -77,10 +126,5 @@ const CreateToken = (userId) => { // userid yi kullanarak jwt token oluşturma
     })
 }
 
-const GetDashboardPage = (req, res) => { // Bu yönlendirmeyi burda yapmamızın sebebi kullanıcı sadece giriş yaptuğında bu sayfaya erişimi olması için.
-    res.render("Dashboard", {
-        link: "Dashboard"
-    })
-}
 
-export { CreateUser, CreateToken, GetDashboardPage, LoginUser } // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.
+export { CreateUser, CreateToken, LoginUser, GetAllUser, UserMe } // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.

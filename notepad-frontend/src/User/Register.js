@@ -29,7 +29,7 @@ export default function Register() {
       return;
     }
     try {
-      const { data } = await axiosInstance.post(`/auth/register`, {
+      const { data } = await axiosInstance.post(`/Users/Register`, {
         FullName: form.FullName,
         Email: form.Email,
         Password: form.Password,
