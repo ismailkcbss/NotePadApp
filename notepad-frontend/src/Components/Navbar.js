@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { userActions } from '../redux/slice/userSlice';
 import * as storage from '../storage.helper'
-
+import Cookie from 'js-cookie'; // Frontend tarafından cookie işlemleri için kullandığımız paket 
 
 export default function Navbar() {
 
@@ -21,10 +21,15 @@ export default function Navbar() {
     const handleClickDashboard = () => {
         history.push('/Dashboard')
     }
+
+    const RemoveCookie = (jwt) => { // cookieyi silme fonksiyınu
+        Cookie.remove(jwt)
+    }
+
     const handleClickLogout = () => {
         dispatch(userActions.logout());
-        storage.setKeyWithValue("jwt", "");
-        
+        storage.setKeyWithValue("jwt", ""); // Logout tusuna basınca storage den cookie yi siler
+        RemoveCookie('jwt'); // Logout tuşuna basınca cookiyi siler.
         history.push('/');
     }
     return (

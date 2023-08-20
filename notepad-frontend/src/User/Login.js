@@ -43,7 +43,6 @@ export default function Login() {
             storage.setKeyWithValue("jwt", data.token);
             setApiToken(data.token);
             dispatch(userActions.login(data))
-            console.log(data);
             history.push('/Dashboard');
         } catch (error) {
             alert("Could not login");

@@ -55,7 +55,7 @@ const LoginUser = async (req, res) => {
         if (check) { // Yukarıdaki işlem başarılı bir şekilde olduysa check değişkeni true olmuştur ve artık token oluşturup cookie de saklayabiliriz.
             const token = CreateToken(user._id) // DB de oluşan tabloda user lar için id yi _id kelimesi ile tuttuğumuz için bu şekilde yazdık. Burda yaptığımız işlem ise token anahtar kelimesi içine userID yi kullarak token oluşturduk.
             res.cookie("jwt", token, { // ilk değişken cookie de tutulacak isim, ikincisi tutulacak veri, üçüncü durumda hem  hem de milisaniye cinsinden cookie süresi belirleniyor.
-                httpOnly: false, // JavaScript ile herhangi bir manipüle edilmemesi için yapılmış olan sadece http isteklerinde kullanmak için güvenlik önlemi
+                httpOnly: false, // Bu sayade http isteklerinde müdahale edebiliyoruz
                 maxAge: 1000 * 60 * 60 * 24 // Milisaniye cinsinden cookie süresini belirlemek için kullanılır bizde 1 güne eşitledik
             })
             res.status(201).json({ // Başarılı giriş olursa json olarak bilgilerini dönüyorum.
