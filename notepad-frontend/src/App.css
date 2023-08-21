@@ -2,10 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /*USER CLASS CSS*/
-.LoginDiv,
+.Container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
 .RegisterDiv {
     width: 100%;
     height: 100vh;
@@ -15,13 +21,11 @@
     align-items: center;
 }
 
-form {
+.RegisterDiv form {
     width: 35em;
-    height: 21em;
-    border-radius: .4em .4em 0 0;
+    height: auto;
 }
 
-.loginForm,
 .RegisterForm {
     width: 100%;
     height: 100%;
@@ -32,13 +36,7 @@ form {
     padding: .5em 1em .5em 1em;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
 
-.loginForm .LoginInput,
 .RegisterInput {
     margin: .7em;
     width: 100%;
@@ -50,10 +48,8 @@ input::-webkit-inner-spin-button {
     padding: 1em;
     border-radius: .5em;
     background-color: rgba(240, 240, 240, 0.712);
-    appearance: textfield;
 }
 
-.LoginButton,
 .RegisterButton {
     border-radius: .5em;
     font-size: 1em;
@@ -65,7 +61,6 @@ input::-webkit-inner-spin-button {
     color: rgb(0, 0, 0);
 }
 
-.LoginButton:hover,
 .RegisterButton:hover {
     background-color: rgba(2, 128, 2, 0.644);
     cursor: pointer;
@@ -84,27 +79,325 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-/*COMPONENTS CLASS CSS*/
-.NavbarDiv {
+/*LOGİN CSS*/
+.form {
+    width: 35em;
+    height: 40em;
+    border-radius: .4em .4em 0 0;
+}
+
+.LoginDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 35em;
+    height: 21em;
+    border-radius: .4em .4em 0 0;
+}
+
+.loginForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 1em .5em 1em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.loginForm .LoginInput {
+    margin: .7em;
     width: 100%;
     height: 3em;
     line-height: 3em;
-    background-color: rgb(230, 230, 230);
-    display: flex;
-    justify-content: end;
+    font-size: 1em;
+    outline: none;
+    border: none;
+    padding: 1em;
+    border-radius: .5em;
+    background-color: rgba(240, 240, 240, 0.712);
+    appearance: textfield;
 }
 
-.NavbarClickButton {
-    width: 8em;
+.LoginButton {
+    border-radius: .5em;
+    font-size: 1em;
+    height: 3em;
+    width: 20em;
     border: none;
-    margin: .5em;
-    border-radius: .2em;
     font-weight: bold;
+    transition: ease-in-out .2s;
+    color: rgb(0, 0, 0);
+}
+
+.LoginButton:hover {
+    background-color: rgba(2, 128, 2, 0.644);
+    cursor: pointer;
+    color: white;
+}
+
+.LoginRegForButton {
+    border: none;
     background-color: transparent;
+    color: rgb(45, 128, 153);
+    transition: ease-in-out .5s;
+}
+
+.LoginRegForButton:hover {
+    color: rgba(45, 128, 153, 0.582);
+    cursor: pointer;
+}
+
+/*COMPONENTS CLASS NAVBAR CSS*/
+.NavbarDiv {
+    flex-basis: 25%;
+    background: linear-gradient(49deg,
+            rgba(122, 3, 233, 0.959) 35%,
+            rgba(93, 6, 175, 0.959) 35%,
+            rgba(69, 91, 124, 0.871) 100%);
+
+    color: rgba(255, 255, 255, 0.842);
+    padding: .5em 1em .5em 1em;
+}
+
+.ImageDiv {
+    width: 100%;
+    height: 15em;
+}
+
+.ImageDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.UserInfo {
+    width: 100%;
+    height: 25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.1em;
+    font-weight: bold;
+
+}
+
+.UserButton {
+    width: 100%;
+    height: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.UserButton button {
+    color: white;
+    background: linear-gradient(150deg,
+            rgba(13, 100, 87, 0.856) 5%,
+            rgba(70, 7, 112, 0.871) 100%);
+    border: none;
+    width: 18em;
+    height: 2.5em;
+    line-height: 2.5em;
     transition: ease-in-out .3s;
 }
 
-.NavbarClickButton:hover {
-    font-size: .9em;
+.UserButton button:hover {
+    background: linear-gradient(150deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
+    color: rgba(211, 211, 211, 0.863);
     cursor: pointer;
+}
+
+.UserInfo p {
+    padding: 1em 0 1em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.WeatherDiv p {
+    padding: 1em 0 1em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weatInf {
+    width: 13em;
+    text-align: start;
+}
+
+/*DASHBOARD CSS*/
+
+.DashboardDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.UserContainer {
+    flex-basis: 22%;
+    background: linear-gradient(80deg,
+            rgba(122, 3, 233, 0.959) 35%,
+            rgba(3, 32, 75, 0.871) 100%,
+            rgba(69, 91, 124, 0.871) 100%);
+
+    color: rgba(255, 255, 255, 0.842);
+    padding: .5em 1em .5em 1em;
+}
+
+.NotePadContainer {
+    flex-basis: 78%;
+    background: linear-gradient(49deg,
+            rgba(195, 189, 201, 0.856) 5%,
+            rgba(214, 230, 209, 0.871) 85%);
+    padding: .5em 1em .5em 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.AddNewNoteDiv {
+    flex-basis: 8%;
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.AddNewNoteDiv button {
+    width: 13em;
+    height: 2.5em;
+    border: none;
+    border-radius: .8em;
+    font-weight: bold;
+    transition: ease-in-out .2s;
+    color: white;
+    background: linear-gradient(150deg,
+            rgba(13, 100, 87, 0.856) 5%,
+            rgba(70, 7, 112, 0.871) 100%);
+
+}
+
+.AddNewNoteDiv button:hover {
+    background: linear-gradient(150deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
+    color: rgba(211, 211, 211, 0.863);
+    cursor: pointer;
+}
+
+.NotesDiv {
+    padding: 2em;
+    flex-basis: 92%;
+    width: 100%;
+    height: 100%;
+
+}
+
+.MyNotesDiv {
+    display: grid;
+    grid-gap: 6rem;
+    grid-template-columns: repeat(auto-fit, minmax(20em, 2fr));
+}
+
+.NotePaperDiv {
+    width: 22em;
+    height: 19em;
+    background: linear-gradient(150deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
+    border-radius: 1em;
+}
+
+.NotesDiv {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.NoteTitle {
+    flex-basis: 15%;
+    border-bottom: 1px solid rgba(206, 214, 214, 0.699);
+    line-height: 2em;
+}
+
+.NoteDescription {
+    width: 100%;
+    height: auto;
+    flex-basis: 80%;
+    white-space: pre-wrap !important;   
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.NoteUpload {
+    flex-basis: 15%;
+    line-height: 2em;
+}
+
+.NoteTitle span,
+.NoteDescription span,
+.NoteUpload span {
+    color: rgba(206, 214, 214, 0.699);
+}
+
+.AddNewNoteModel {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(179, 179, 179);
+}
+
+
+
+
+.NoteModalDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NoteModalInput {
+    width: 100%;
+    height: 2.5em;
+    border: none;
+    padding: 1em 0 1em 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: antiquewhite;
+    outline: none;
+}
+
+.NoteModalButton {
+    width: 70%;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-radius: .5em;
+    border: none;
+    transition: ease-in-out .3s;
+}
+
+.NoteModalButton:hover {
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.616);
 }

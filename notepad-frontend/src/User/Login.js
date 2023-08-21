@@ -4,6 +4,7 @@ import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { userActions } from '../redux/slice/userSlice';
+import Navbar from '../Components/Navbar';
 
 export default function Login() {
 
@@ -59,32 +60,38 @@ export default function Login() {
     }
 
     return (
-        <div className='LoginDiv'>
-            <h3>Please Enter Your Information </h3>
-            <form>
-                <div className='loginForm'>
-                    <input
-                        type='text'
-                        placeholder='Email Address'
-                        value={form.Email}
-                        onChange={(e) => handleTextChange(e.target.value, "Email")}
-                        className='LoginInput'
-                    />
-                    <input
-                        type='password'
-                        placeholder='Password'
-                        value={form.Password}
-                        onChange={(e) => handleTextChange(e.target.value, "Password")}
-                        className='LoginInput'
-                    />
-                    <button className='LoginButton' onClick={AuthenticationLogin}>Login</button>
+        <div className='Container'>
+            <div className='NavbarDiv'>
+                <Navbar />
+            </div>
+            <div className='LoginDiv'>
+                <h3>Please Enter Your Information </h3>
+                <form className='form'>
+                    <div className='loginForm'>
+                        <input
+                            type='text'
+                            placeholder='Email Address'
+                            value={form.Email}
+                            onChange={(e) => handleTextChange(e.target.value, "Email")}
+                            className='LoginInput'
+                        />
+                        <input
+                            type='password'
+                            placeholder='Password'
+                            value={form.Password}
+                            onChange={(e) => handleTextChange(e.target.value, "Password")}
+                            className='LoginInput'
+                        />
+                        <button className='LoginButton' onClick={AuthenticationLogin}>Login</button>
 
-                    <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column" }}>
-                        <span>To Register <button className='LoginRegForButton' onClick={handleRegisterClick}>Click Here</button></span>
-                        <span>Forgot Your Password <button className='LoginRegForButton' onClick={handlePasswordClick}>Click Here</button></span>
+                        <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column" }}>
+                            <span>To Register <button className='LoginRegForButton' onClick={handleRegisterClick}>Click Here</button></span>
+                            <span>Forgot Your Password <button className='LoginRegForButton' onClick={handlePasswordClick}>Click Here</button></span>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+
     )
 }

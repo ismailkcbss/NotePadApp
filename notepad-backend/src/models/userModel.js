@@ -28,7 +28,11 @@ const userSchema = new Schema(
             type: Number,
             required: [true, "Telefon Numaranızı girmediniz"],
             maxLength: [11, "Telefon numarası girerken fazla tuşlama yaptınız"],
-        }
+        },
+        Image: {
+            type:String,
+            required: [true, "Fotoğraf yüklemediniz"],
+        },
     },
     {
         timestamps: true, // Mongoose da createdAt ile UpdatedAt oluşturur. Bunu kullanıcı kayıt tarihi vs için işe yarar.

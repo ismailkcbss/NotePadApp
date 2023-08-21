@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { axiosInstance } from '../axios.util'
 import { useHistory } from 'react-router-dom';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../Firebase/firebase';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function Register() {
 
@@ -12,6 +16,7 @@ export default function Register() {
   }
 
   const [form, setForm] = useState({ ...initialForm });
+  const [image, setImage] = useState(null);
 
   const history = useHistory();
 
@@ -21,6 +26,12 @@ export default function Register() {
       [key]: value,
     })
   }
+  //Firebase gönderilecek image nin url adresini takip etme
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  }
 
   const handleClickRegistration = async (event) => {
     event.preventDefault();
@@ -28,15 +39,19 @@ export default function Register() {
       alert("Please Fill in the Missing Information")
       return;
     }
+    const imageRef = ref(storage, uuidv4());
     try {
+      await uploadBytes(imageRef, image);
+      const result = await getDownloadURL(imageRef);
       const { data } = await axiosInstance.post(`/Users/Register`, {
         FullName: form.FullName,
         Email: form.Email,
         Password: form.Password,
         Phone: form.Phone,
+        Image: result
       })
       alert("Registration Success")
-      history.push('/Login');
+      history.push('/');
     } catch (error) {
       alert("Hatalı giris");
     }
@@ -81,6 +96,7 @@ export default function Register() {
             className='RegisterInput'
             required
           />
+          <input type="file" onChange={handleImageChange} style={{ margin: "30px" }} />
           <button className='RegisterButton' onClick={handleClickRegistration}>Register</button>
         </div>
       </form>

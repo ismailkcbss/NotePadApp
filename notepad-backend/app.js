@@ -4,6 +4,7 @@ import conn from './db.js';
 import cookieParser from 'cookie-parser';
 import { CheckUser } from './src/middlewares/authMiddleWare.js'
 import userRoute from "./src/routes/userRoute.js";
+import notesRoute from './src/routes/notesRoute.js'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -51,6 +52,7 @@ app.use(
 
 // Route
 app.get('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir
+app.use("/Notes", notesRoute);
 app.use("/Users", userRoute);
 
 app.listen(port, () => {
