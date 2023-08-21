@@ -18,6 +18,8 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState("");
   const [note, setNote] = useState([])
+  const [visited, setVisited] = useState(false)
+
 
   const dispatch = useDispatch();
 
@@ -33,16 +35,16 @@ export default function Dashboard() {
   }
 
   const getAllNotes = async () => {
-      try {
-          const { data } = await axiosInstance.get(`/Notes/Note`)
-          setNote(data.notes)
-      } catch (error) {
-          alert("Error Notes")
-      }
+    try {
+      const { data } = await axiosInstance.get(`/Notes/Note`)
+      setNote(data.notes)
+    } catch (error) {
+      alert("Error Notes")
+    }
   }
-  
+
   const handleAddNoteClick = () => {
-    history.push("/NoteModal")
+    setVisited(true)
   }
 
 
@@ -56,6 +58,15 @@ export default function Dashboard() {
       {
         isLoading ? (
           <div className="DashboardDiv">
+            {
+              visited ? (
+                <div className='DashboardModal'>
+                  <NoteModal setVisited={setVisited} />
+                </div>
+              ) : (
+                ""
+              )
+            }
             <div className="UserContainer">
               <Navbar userData={userData} token={token} />
             </div>
@@ -66,11 +77,9 @@ export default function Dashboard() {
               </div>
               <hr />
               <div className="NotesDiv">
-                <NotePaper note={note}/>
+                <NotePaper note={note} setVisited={setVisited} />
               </div>
             </div>
-
-
           </div>
         ) : (
           <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "50px" }}>

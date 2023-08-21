@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import { axiosInstance } from '../axios.util';
+import { useHistory } from 'react-router-dom';
 
-export default function NoteModal() {
+export default function NoteModal(props) {
+
+    const { setVisited } = props;
+
+    const characterLimit = 300;
+
+    const history = useHistory();
 
     const initialForm = {
         Title: "",
@@ -11,10 +18,11 @@ export default function NoteModal() {
     const [form, setForm] = useState({ ...initialForm });
 
     const handleTextChange = (value, key) => {
-        setForm({
-            ...form,
-            [key]: value
-        })
+        if (characterLimit - value.length >= 0)
+            setForm({
+                ...form,
+                [key]: value
+            })
     }
 
     const handleSaveClick = async (event) => {
@@ -23,19 +31,36 @@ export default function NoteModal() {
             alert("Please enter")
             return;
         }
+        
         try {
+       
             const { data } = await axiosInstance.post(`/Notes/Note`, {
                 Title: form.Title,
                 Description: form.Description
             })
-            alert("Başarılı")
+          
+            alert("Başarılı");
+            setVisited(false);
+            window.location.reload()
         } catch (error) {
             alert("Not Kaydedilemedi")
+            console.log(error);
         }
+
+        setForm({ ...initialForm })
+    }
+
+    const HandleCloseClick = () => {
+        setVisited(false);
+        window.location.reload() // Modal kapanınca sayfayı refresh eder
     }
 
     return (
         <div className='NoteModalDiv'>
+            <div className='NoteModalTitleDiv'>
+                <span>Please Enter Your Note</span>
+                <button className='CloseModalButton' onClick={HandleCloseClick}>X</button>
+            </div>
             <form>
                 <input
                     type='text'
@@ -43,14 +68,18 @@ export default function NoteModal() {
                     value={form.Title}
                     onChange={(e) => handleTextChange(e.target.value, "Title")}
                     className='NoteModalInput'
+                    maxLength={25}
                 />
-                <input
-                    type='text'
+                <textarea
+                    rows={9}
+                    cols={57.5}
                     placeholder='Note Description'
                     value={form.Description}
                     onChange={(e) => handleTextChange(e.target.value, "Description")}
-                    className='NoteModalInput'
+                    maxLength={310}
+                    min={0}
                 />
+                <small style={{ fontSize: ".8em", marginRight: "4em" }}>{characterLimit - form.Description.length} Remaining</small>
                 <button className='NoteModalButton' onClick={handleSaveClick}>Save</button>
             </form>
         </div>

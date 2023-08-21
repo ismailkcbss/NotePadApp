@@ -8,8 +8,8 @@ const firebaseConfig = {
   projectId: "notepadapp-96bda",
   storageBucket: "notepadapp-96bda.appspot.com",
   messagingSenderId: "989534226126",
-  appId: "1:989534226126:web:7dace1c6d0ec2b132e729f",
-  measurementId: "G-121PF343HR"
+  appId: "1:989534226126:web:375705475060afab2e729f",
+  measurementId: "G-LW2MGB9ZQG"
 };
 
 const app = initializeApp(firebaseConfig);

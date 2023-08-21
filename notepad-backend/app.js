@@ -51,7 +51,7 @@ app.use(
 // })
 
 // Route
-app.get('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir
+app.use('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir
 app.use("/Notes", notesRoute);
 app.use("/Users", userRoute);
 

@@ -119,7 +119,6 @@ const UserMe = async (req, res, next) => {
     }
 }
 
-
 const CreateToken = (userId) => { // userid yi kullanarak jwt token oluşturma
     return jwt.sign({ userId }, process.env.JWT_SECRET, { // ilk veri kullanıcıya hangi verisine göre token verileceği, ikinci veri ise jwt yi gönderen kişinin kimliğini doğrulamak ve güvenliği sağlamak için
         expiresIn: "1d" // 1 gün geçerlilik süresi ardından token süresi dolar
