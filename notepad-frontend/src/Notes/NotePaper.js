@@ -2,34 +2,41 @@ import React from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment/moment'; // DB den gelen tarihi formatlamak
+import { useHistory } from 'react-router-dom';
 
 export default function NotePaper(props) {
 
-    const { note , setVisited } = props;
+    const { note, setVisited } = props;
+    const history = useHistory();
 
-    const handleClickNote = () => {
+    const handleNoteClick = () => {
+        history.push(`/NoteView/${note._id}`)
+    }
+
+    const handleClickEdit = () => {
         setVisited(true)
+    }
+
+    const handleClickDelete = () => {
+
     }
 
     return (
         <div className='MyNotesDiv'>
-            {note.map((state) => (
-                <div className='NotePaperDiv' key={state._id}>
-                    <div className='NotesDiv'>
-                        <div className='NoteTitle'><span>Title:</span> {state.Title}</div>
-                        <div className='NoteDescription'><span>Description:</span> {state.Description}</div>
-                        <div className='NoteUpload'>
-                            <span>Date: {moment(state.uploadedAt).format('DD.MM.YYYY')}</span>
-                            <div className='IconButton'>
-                                <button onClick={handleClickNote} className='EditIcon'><EditIcon /></button>
-                                <button onClick={handleClickNote} className='DeleteIcon'><DeleteIcon /></button>
-                            </div>
-
+            <div className='NotePaperDiv' onClick={handleNoteClick} key={note._id}>
+                <div className='NotesInfo'>
+                    <div className='NoteTitle'><span>Title:</span> {note.Title}</div>
+                    <div className='NoteDescription'><span>Description:</span>
+                    <p>{note.Description}</p></div>
+                    <div className='NoteUpload'>
+                        <span>Date: {moment(note.uploadedAt).format('DD.MM.YYYY')}</span>
+                        <div className='IconButton'>
+                            <button onClick={handleClickEdit} className='EditIcon'><EditIcon /></button>
+                            <button onClick={handleClickDelete} className='DeleteIcon'><DeleteIcon /></button>
                         </div>
                     </div>
                 </div>
-            ))
-            }
+            </div>
         </div>
     )
 }

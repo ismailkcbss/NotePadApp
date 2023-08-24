@@ -26,6 +26,10 @@ export default function Navbar(props) {
         history.push('/');
     }
 
+    const handleSendMail = () => {
+        history.push('/Contact')
+    }
+
     return (
         <div className='NavbarDiv'>
             {token ? (
@@ -45,7 +49,18 @@ export default function Navbar(props) {
                 </div>
 
             ) : (
-                ""
+                <div className='NavbarContainer'>
+                    <div className='NavbarHeader'>
+                        <p>
+                            NotePad Application
+                        </p>
+                    </div>
+
+                    <div className='Navbar'>
+                        <p>Contact Us</p>
+                        <button onClick={handleSendMail}>Send Mail</button>
+                    </div>
+                </div>
             )}
         </div>
     )

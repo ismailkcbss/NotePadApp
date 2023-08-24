@@ -241,6 +241,15 @@ input::-webkit-inner-spin-button {
     text-align: start;
 }
 
+.NavbarContainer {
+    width: 100%;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
 /*DASHBOARD CSS*/
 
 .DashboardDiv {
@@ -262,9 +271,6 @@ input::-webkit-inner-spin-button {
 
 .NotePadContainer {
     flex-basis: 78%;
-    background: linear-gradient(49deg,
-            rgba(195, 189, 201, 0.856) 5%,
-            rgba(214, 230, 209, 0.871) 85%);
     padding: .5em 1em .5em 1em;
     display: flex;
     flex-direction: column;
@@ -302,30 +308,36 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
+
+.MyNotesDiv {
+    width: 18em;
+    height: 16em;
+}
+
+.NotePaperDiv {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(150deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
+    border-radius: 1em;
+    transition: ease-in-out .2s;
+}
+.NotePaperDiv:hover{
+    background-color: rgba(168, 168, 168, 0.555)!important;
+    cursor: pointer;
+}
 .NotesDiv {
     padding: 2em;
     flex-basis: 92%;
     width: 100%;
     height: 100%;
-
+    display: grid !important;
+    grid-gap: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 2fr));
 }
 
-.MyNotesDiv {
-    display: grid;
-    grid-gap: 6rem;
-    grid-template-columns: repeat(auto-fit, minmax(20em, 2fr));
-}
-
-.NotePaperDiv {
-    width: 22em;
-    height: 19em;
-    background: linear-gradient(150deg,
-            rgba(69, 143, 132, 0.856) 5%,
-            rgba(98, 43, 134, 0.871) 100%);
-    border-radius: 1em;
-}
-
-.NotesDiv {
+.NotesInfo {
     padding: 1em;
     width: 100%;
     height: 100%;
@@ -342,14 +354,16 @@ input::-webkit-inner-spin-button {
 }
 
 .NoteDescription {
-    width: 100%;
-    height: auto;
     flex-basis: 80%;
     white-space: pre-wrap !important;
     word-break: break-all;
-    overflow: hidden;
 }
-
+.NoteDescription p{
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical; 
+    overflow:hidden;
+}
 .NoteUpload {
     flex-basis: 15%;
     line-height: 2em;
@@ -357,7 +371,6 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
 }
 
-.IconButton {}
 
 .EditIcon {
     color: rgb(230, 196, 8);
@@ -420,7 +433,8 @@ input::-webkit-inner-spin-button {
     width: 80%;
     height: auto;
 }
-.NoteModalTitleDiv{
+
+.NoteModalTitleDiv {
     width: 100%;
     height: 4em;
     margin: 1em 0 1em 0;
@@ -428,9 +442,11 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-between;
 }
-.NoteModalTitleDiv span{
+
+.NoteModalTitleDiv span {
     font-weight: bold;
 }
+
 .CloseModalButton {
     width: 2em;
     border-radius: .4em;
@@ -438,10 +454,12 @@ input::-webkit-inner-spin-button {
     background-color: rgb(219, 219, 219, 0.350);
     transition: ease-in-out .2s;
 }
-.CloseModalButton:hover{
+
+.CloseModalButton:hover {
     cursor: pointer;
     background-color: rgba(219, 219, 219, 0.144);
 }
+
 .NoteModalInput {
     width: 100%;
     height: 2.5em;
@@ -469,8 +487,9 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
     background-color: rgba(240, 248, 255, 0.616);
 }
+
 textarea {
-    row-gap:8;
+    row-gap: 8;
     columns: 8;
     border: none;
     resize: none;

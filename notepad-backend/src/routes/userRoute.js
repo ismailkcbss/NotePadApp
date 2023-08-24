@@ -11,4 +11,6 @@ router.route('/GetAllUser').get(userController.GetAllUser);
 router.route('/UserMe')
     .get(authMiddleware.AuthenticateToken, userController.UserMe);
 
+router.route('/Contact').post(userController.SendMail);
+
 export default router;

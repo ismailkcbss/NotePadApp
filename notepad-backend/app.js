@@ -26,7 +26,7 @@ app.use(cookieParser()); // Cookie ye çerezleri göndermek için ekliyoruz
 app.use(bodyParser.urlencoded({ extended: true })); // Eğerki bu durumu belirtmez isek put ve post isteği atamayız.
 app.use(cors({
     origin: ['http://localhost:3000'], //Hedef gösterme
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST','PUT','DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
 })) // Frontend den gelen istekleri backende iletmesini sağlayan paket

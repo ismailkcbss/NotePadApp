@@ -9,7 +9,8 @@ import * as storage from './storage.helper'
 import { userActions } from './redux/slice/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from './User/ProtectedRoute';
-import NoteModal from './Notes/NoteModal';
+import Contact from './User/Contact';
+import NoteView from './Notes/NoteView';
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
         <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/Register' component={Register} />
-            <Route exact path='/NoteModal' component={NoteModal} />
+            <Route exact path='/Contact' component={Contact} />
+            <Route exact path='/NoteView/:id' component={NoteView} />
             <ProtectedRoute exact path='/Dashboard' component={Dashboard} />
         </Switch>
     </BrowserRouter>

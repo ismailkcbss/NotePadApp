@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../redux/slice/userSlice';
 import * as storage from '../storage.helper'
-import NoteModal from '../Notes/NoteModal';
+import NoteAddModal from '../Notes/NoteAddModal';
 import { useHistory } from 'react-router-dom';
 
 export default function Dashboard() {
@@ -61,7 +61,7 @@ export default function Dashboard() {
             {
               visited ? (
                 <div className='DashboardModal'>
-                  <NoteModal setVisited={setVisited} />
+                  <NoteAddModal setVisited={setVisited} />
                 </div>
               ) : (
                 ""
@@ -77,7 +77,11 @@ export default function Dashboard() {
               </div>
               <hr />
               <div className="NotesDiv">
-                <NotePaper note={note} setVisited={setVisited} />
+                {
+                  note.map((note) => (
+                      <NotePaper key={note._id} note={note} setVisited={setVisited} />
+                  ))
+                }
               </div>
             </div>
           </div>

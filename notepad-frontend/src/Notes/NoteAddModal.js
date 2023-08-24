@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { axiosInstance } from '../axios.util';
 import { useHistory } from 'react-router-dom';
 
-export default function NoteModal(props) {
+export default function NoteAddModal(props) {
 
     const { setVisited } = props;
 
-    const characterLimit = 300;
+    const characterLimit = 2000;
 
     const history = useHistory();
 
@@ -31,14 +31,11 @@ export default function NoteModal(props) {
             alert("Please enter")
             return;
         }
-        
         try {
-       
             const { data } = await axiosInstance.post(`/Notes/Note`, {
                 Title: form.Title,
                 Description: form.Description
             })
-          
             alert("Başarılı");
             setVisited(false);
             window.location.reload()
@@ -68,7 +65,7 @@ export default function NoteModal(props) {
                     value={form.Title}
                     onChange={(e) => handleTextChange(e.target.value, "Title")}
                     className='NoteModalInput'
-                    maxLength={25}
+                    maxLength={100}
                 />
                 <textarea
                     rows={9}
@@ -76,8 +73,7 @@ export default function NoteModal(props) {
                     placeholder='Note Description'
                     value={form.Description}
                     onChange={(e) => handleTextChange(e.target.value, "Description")}
-                    maxLength={310}
-                    min={0}
+                    maxLength={2000}
                 />
                 <small style={{ fontSize: ".8em", marginRight: "4em" }}>{characterLimit - form.Description.length} Remaining</small>
                 <button className='NoteModalButton' onClick={handleSaveClick}>Save</button>
