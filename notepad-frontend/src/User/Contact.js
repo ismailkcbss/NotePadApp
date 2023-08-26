@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { axiosInstance } from '../axios.util';
 import alertify from 'alertifyjs';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Contact() {
 
@@ -9,14 +11,16 @@ export default function Contact() {
         Email: "",
         Description: "",
     }
-
+    const characterLimit = 2000;
     const [form, setForm] = useState({ ...initialForm });
+    const history = useHistory();
 
     const handleTextChange = (value, key) => {
-        setForm({
-            ...form,
-            [key]: value
-        })
+        if (characterLimit - value.length >= 0)
+            setForm({
+                ...form,
+                [key]: value
+            })
     }
     alertify.set('notifier', 'delay', 4); // alert mesajı süresi
     const handleSendClick = async (event) => {
@@ -40,35 +44,46 @@ export default function Contact() {
             alertify.error(error)
         }
     }
+    const handleClickReturn = () => {
+        history.push('/')
+    }
     return (
         <div className='ContactDiv'>
+            <div className='FormDivHeader'>
+                <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Please Enter Your Information</h3>
+            </div>
             <form>
-                <input
-                    type='text'
-                    placeholder='Enter a FullName'
-                    value={form.FullName}
-                    onChange={(e) => handleTextChange(e.target.value, "FullName")}
-                    required
-                    autoFocus
-                />
-                <input
-                    type='email'
-                    placeholder='Enter a email'
-                    value={form.Email}
-                    onChange={(e) => handleTextChange(e.target.value, "Email")}
-                    required
-                    autoComplete
-                />
-                <textarea
-                    rows={10}
-                    cols={30}
-                    placeholder='Enter a Description'
-                    value={form.Description}
-                    onChange={(e) => handleTextChange(e.target.value, "Description")}
-                    maxLength={2000}
-                    required
-                />
-                <button onClick={handleSendClick}>Send</button>
+                <div className='ContactForm'>
+                    <input
+                        type='text'
+                        placeholder='Enter a FullName'
+                        value={form.FullName}
+                        onChange={(e) => handleTextChange(e.target.value, "FullName")}
+                        required
+                        autoFocus
+                        className='ContactInput'
+                    />
+                    <input
+                        type='email'
+                        placeholder='Enter a email'
+                        value={form.Email}
+                        onChange={(e) => handleTextChange(e.target.value, "Email")}
+                        required
+                        autoComplete
+                        className='ContactInput'
+                    />
+                    <textarea
+                        rows={12}
+                        cols={56}
+                        placeholder='Enter a Description'
+                        value={form.Description}
+                        onChange={(e) => handleTextChange(e.target.value, "Description")}
+                        maxLength={2000}
+                        required
+                    />
+                    <small style={{ float: "left", fontSize: ".8em", margin: "0 4em 2em 0" }}>{characterLimit - form.Description.length} Remaining</small>
+                    <button className='ContactButton' onClick={handleSendClick}>Send</button>
+                </div>
             </form>
         </div>
     )

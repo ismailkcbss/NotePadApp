@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../Firebase/firebase';
 import { v4 as uuidv4 } from 'uuid';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 
 export default function Register() {
@@ -58,10 +59,14 @@ export default function Register() {
 
     setForm({ ...initialForm })
   }
-
+  const handleClickReturn = () => {
+    history.push('/')
+  }
   return (
     <div className='RegisterDiv'>
-      <h3>Please Enter Your Information</h3>
+      <div className='FormDivHeader'>
+        <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Please Enter Your Information</h3>
+      </div>
       <form>
         <div className='RegisterForm'>
           <input

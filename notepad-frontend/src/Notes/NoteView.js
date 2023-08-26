@@ -55,34 +55,52 @@ export default function NoteView() {
     }
   }
 
+
+  const handleDeleteClick = async () => {
+    try {
+      const { data } = await axiosInstance.delete(`/Notes/Note/${id}`)
+      alert('The Note Was Successfully Deleted')
+      history.push('/Dashboard')
+    } catch (error) {
+      alert("The Note Was Failed Deleted")
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     GetSingleNote();
   }, [id])
   return (
     <div className='NoteViewDiv'>
-      <div>
-        <form>
+      <form>
+        <div className='NoteViewForm'>
           <input
             type='text'
             placeholder='Note Title'
             value={form.Title}
             onChange={(e) => handleChangeText(e.target.value, "Title")}
-            className='NoteModalInput'
+            className='NoteViewInput'
             maxLength={100}
           />
           <textarea
-            rows={9}
-            cols={57.5}
+            rows={12}
+            cols={56}
             placeholder='Note Description'
             value={form.Description}
             onChange={(e) => handleChangeText(e.target.value, "Description")}
             maxLength={2000}
             min={0}
           />
-          <small style={{ fontSize: ".8em", marginRight: "4em" }}>{characterLimit - form.Description.length} Remaining</small>
-          <button className='NoteModalButton' onClick={handleSaveClick}>Update</button>
-        </form>
+          <small style={{ float: "left", fontSize: ".8em", margin: "0 4em 2em 0" }}>{characterLimit - form.Description.length} Remaining</small>
+        </div>
+      </form>
+      <div className='NoteViewButtonDiv'>
+        <button className='NoteViewUpButton' onClick={handleSaveClick}>Update</button>
+        <button className='NoteViewDelButton' onClick={handleDeleteClick}>Delete</button>
       </div>
+
+
+
     </div>
   )
 }

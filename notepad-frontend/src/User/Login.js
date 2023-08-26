@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { userActions } from '../redux/slice/userSlice';
 import Navbar from '../Components/Navbar';
+import alertify from 'alertifyjs';
 
 export default function Login() {
 
@@ -28,12 +29,11 @@ export default function Login() {
     }
 
 
-
+    alertify.set('notifier', 'delay', 4); // alert mesajı süresi
     const AuthenticationLogin = async (event) => {
-
         event.preventDefault();
         if (form.Email.trim() === "" || form.Password.trim() === "") {
-            alert("Please Check Your Information ")
+            alertify.error("Bilgilerinizi Eksiksiz Girin");
             return;
         }
         try {
@@ -45,18 +45,18 @@ export default function Login() {
             setApiToken(data.token);
             dispatch(userActions.login(data))
             history.push('/Dashboard');
-        } catch (error) {
-            alert("Could not login");
+            alertify.success("Giriş Başarılı");
+        }catch (error) {
+            alertify.error(error.response.data.error);
         }
         setForm({ ...initialForm });
     }
-
 
     const handleRegisterClick = () => {
         history.push('/Register');
     }
     const handlePasswordClick = () => {
-
+        history.push('/PasswordReset');
     }
 
     return (
@@ -69,7 +69,7 @@ export default function Login() {
                 <form className='form'>
                     <div className='loginForm'>
                         <input
-                            type='text'
+                            type='email'
                             placeholder='Email Address'
                             value={form.Email}
                             onChange={(e) => handleTextChange(e.target.value, "Email")}

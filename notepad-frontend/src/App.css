@@ -5,6 +5,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 /*USER CLASS CSS*/
 .Container {
     display: flex;
@@ -12,81 +18,17 @@
     height: 100vh;
 }
 
-.RegisterDiv {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.RegisterDiv form {
+form {
     width: 35em;
     height: auto;
 }
 
-.RegisterForm {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: .5em 1em .5em 1em;
-}
-
-
-.RegisterInput {
-    margin: .7em;
-    width: 100%;
-    height: 3em;
-    line-height: 3em;
-    font-size: 1em;
-    outline: none;
-    border: none;
-    padding: 1em;
-    border-radius: .5em;
-    background-color: rgba(240, 240, 240, 0.712);
-}
-
-.RegisterButton {
-    border-radius: .5em;
-    font-size: 1em;
-    height: 3em;
-    width: 20em;
-    border: none;
-    font-weight: bold;
-    transition: ease-in-out .2s;
-    color: rgb(0, 0, 0);
-}
-
-.RegisterButton:hover {
-    background-color: rgba(2, 128, 2, 0.644);
-    cursor: pointer;
-    color: white;
-}
-
-.LoginRegForButton {
-    border: none;
-    background-color: transparent;
-    color: rgb(45, 128, 153);
-    transition: ease-in-out .5s;
-}
-
-.LoginRegForButton:hover {
-    color: rgba(45, 128, 153, 0.582);
-    cursor: pointer;
-}
-
-/*LOGİN CSS*/
-.form {
-    width: 35em;
-    height: 40em;
-    border-radius: .4em .4em 0 0;
-}
-
-.LoginDiv {
+.RegisterDiv,
+.LoginDiv,
+.PasswordResetDiv,
+.NewPasswordDiv,
+.ContactDiv,
+.NoteViewDiv {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -95,13 +37,20 @@
     align-items: center;
 }
 
-form {
-    width: 35em;
-    height: 21em;
-    border-radius: .4em .4em 0 0;
+.RegisterDiv,
+.PasswordResetDiv,
+.NewPasswordDiv,
+.ContactDiv,
+.NoteViewDiv {
+    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 }
 
-.loginForm {
+.RegisterForm,
+.loginForm,
+.PasswordResetForm,
+.NewPasswordForm,
+.ContactForm,
+.NoteViewForm {
     width: 100%;
     height: 100%;
     display: flex;
@@ -111,13 +60,13 @@ form {
     padding: .5em 1em .5em 1em;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
 
-.loginForm .LoginInput {
+.RegisterInput,
+.LoginInput,
+.PasswordResetInput,
+.NewPasswordInput,
+.ContactInput,
+.NoteViewInput {
     margin: .7em;
     width: 100%;
     height: 3em;
@@ -128,10 +77,27 @@ input::-webkit-inner-spin-button {
     padding: 1em;
     border-radius: .5em;
     background-color: rgba(240, 240, 240, 0.712);
-    appearance: textfield;
 }
 
-.LoginButton {
+textarea {
+    margin-bottom: 1em;
+    border: none;
+    resize: none;
+    background-color: rgba(240, 240, 240, 0.712);
+    font-size: 1.1rem;
+    border-radius: .5em;
+    padding: .2em;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.RegisterButton,
+.LoginButton,
+.PasswordResetButton,
+.NewPasswordButton,
+.ContactButton {
     border-radius: .5em;
     font-size: 1em;
     height: 3em;
@@ -139,13 +105,81 @@ input::-webkit-inner-spin-button {
     border: none;
     font-weight: bold;
     transition: ease-in-out .2s;
+    background: linear-gradient(150deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
     color: rgb(0, 0, 0);
 }
 
-.LoginButton:hover {
+.RegisterButton:hover,
+.LoginButton:hover,
+.PasswordResetButton:hover,
+.NewPasswordButton:hover,
+.ContactButton:hover {
     background-color: rgba(2, 128, 2, 0.644);
     cursor: pointer;
+    color: rgb(179, 179, 179);
+}
+
+.NoteViewButtonDiv {
+    width: 35em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.NoteViewUpButton {
+    background-color: rgb(16, 155, 16);
     color: white;
+    border-radius: .5em;
+    font-size: 1em;
+    height: 2.5em;
+    width: 15em;
+    border: none;
+    font-weight: bold;
+    transition: ease-in-out .2s;
+}
+
+.NoteViewUpButton:hover {
+    background-color: rgba(16, 155, 16, 0.829);
+    cursor: pointer;
+}
+
+.NoteViewDelButton {
+    background-color: rgb(155, 16, 16);
+    color: white;
+    border-radius: .5em;
+    font-size: 1em;
+    height: 2.5em;
+    width: 15em;
+    border: none;
+    font-weight: bold;
+    transition: ease-in-out .2s;
+}
+
+.NoteViewDelButton:hover {
+    background-color: rgba(155, 16, 16, 0.829);
+    cursor: pointer;
+}
+
+.FormDivHeader {
+    width: 30em;
+    height: 2em;
+    line-height: 2em;
+    display: flex;
+}
+
+.FormDivHeader button {
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.301);
+    border-radius: 50%;
+    color: black;
+    margin-right: 5em;
+}
+
+.FormDivHeader button:hover {
+    background-color: rgba(240, 240, 240, 0.356);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .LoginRegForButton {
@@ -195,6 +229,23 @@ input::-webkit-inner-spin-button {
 
 }
 
+.UserInfo p {
+    padding: 1em 0 1em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.WeatherDiv p {
+    padding: 1em 0 1em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.weatInf {
+    width: 13em;
+    text-align: start;
+}
+
 .UserButton {
     width: 100%;
     height: 12em;
@@ -222,23 +273,6 @@ input::-webkit-inner-spin-button {
             rgba(98, 43, 134, 0.871) 100%);
     color: rgba(211, 211, 211, 0.863);
     cursor: pointer;
-}
-
-.UserInfo p {
-    padding: 1em 0 1em 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.WeatherDiv p {
-    padding: 1em 0 1em 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.weatInf {
-    width: 13em;
-    text-align: start;
 }
 
 .NavbarContainer {
@@ -323,10 +357,12 @@ input::-webkit-inner-spin-button {
     border-radius: 1em;
     transition: ease-in-out .2s;
 }
-.NotePaperDiv:hover{
-    background-color: rgba(168, 168, 168, 0.555)!important;
+
+.NotePaperDiv:hover {
+    background-color: rgba(168, 168, 168, 0.555) !important;
     cursor: pointer;
 }
+
 .NotesDiv {
     padding: 2em;
     flex-basis: 92%;
@@ -358,12 +394,14 @@ input::-webkit-inner-spin-button {
     white-space: pre-wrap !important;
     word-break: break-all;
 }
-.NoteDescription p{
+
+.NoteDescription p {
     display: -webkit-box;
     -webkit-line-clamp: 7;
-    -webkit-box-orient: vertical; 
-    overflow:hidden;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
 .NoteUpload {
     flex-basis: 15%;
     line-height: 2em;
@@ -486,19 +524,4 @@ input::-webkit-inner-spin-button {
 .NoteModalButton:hover {
     cursor: pointer;
     background-color: rgba(240, 248, 255, 0.616);
-}
-
-textarea {
-    row-gap: 8;
-    columns: 8;
-    border: none;
-    resize: none;
-    background-color: rgb(219, 219, 219);
-    font-size: 1.1rem;
-    border-radius: .5em;
-    padding: .2em;
-}
-
-textarea:focus {
-    outline: none;
 }

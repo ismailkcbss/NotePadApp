@@ -13,13 +13,6 @@ export default function NotePaper(props) {
         history.push(`/NoteView/${note._id}`)
     }
 
-    const handleClickEdit = () => {
-        setVisited(true)
-    }
-
-    const handleClickDelete = () => {
-
-    }
 
     return (
         <div className='MyNotesDiv'>
@@ -30,10 +23,6 @@ export default function NotePaper(props) {
                     <p>{note.Description}</p></div>
                     <div className='NoteUpload'>
                         <span>Date: {moment(note.uploadedAt).format('DD.MM.YYYY')}</span>
-                        <div className='IconButton'>
-                            <button onClick={handleClickEdit} className='EditIcon'><EditIcon /></button>
-                            <button onClick={handleClickDelete} className='DeleteIcon'><DeleteIcon /></button>
-                        </div>
                     </div>
                 </div>
             </div>

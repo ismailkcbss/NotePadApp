@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from './User/ProtectedRoute';
 import Contact from './User/Contact';
 import NoteView from './Notes/NoteView';
+import NewPassword from './User/NewPassword';
+import PasswordReset from './User/PasswordReset';
 
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
             <Route exact path='/Register' component={Register} />
             <Route exact path='/Contact' component={Contact} />
             <Route exact path='/NoteView/:id' component={NoteView} />
+            <Route exact path='/PasswordReset' component={PasswordReset} />
+            <Route exact path='/NewPassword' component={NewPassword} />
             <ProtectedRoute exact path='/Dashboard' component={Dashboard} />
         </Switch>
     </BrowserRouter>
