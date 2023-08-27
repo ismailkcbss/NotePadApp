@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Components/Navbar';
+import UserInfo from '../Components/UserInfo';
 import NotePaper from '../Notes/NotePaper';
 import { axiosInstance } from '../axios.util';
 import Loading from '../Loading';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../redux/slice/userSlice';
-import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Navbar from '../Components/Navbar';
 
 export default function Dashboard() {
-
-  const token = storage.getValueByKey("jwt");
-
+  
+  const dispatch = useDispatch();
   const history = useHistory();
+
 
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState("");
@@ -26,8 +26,11 @@ export default function Dashboard() {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+  const handleAddNoteClick = () => {
+    history.push('/NoteView')
+  }
 
-  const dispatch = useDispatch();
+
 
   const getUser = async () => {
     try {
@@ -42,15 +45,12 @@ export default function Dashboard() {
 
   const getAllNotes = async () => {
     try {
-      const { data } = await axiosInstance.get(`/Notes/Note?limit=8&offset=${(page - 1) * 8}`)
+      const { data } = await axiosInstance.get(`/Notes/Note?limit=12&offset=${(page - 1) * 12}`)
       setNote(data.notes)
       setCount(data.count)
     } catch (error) {
       alert("Error Notes")
     }
-  }
-  const handleAddNoteClick = () => {
-    history.push('/NoteView')
   }
 
   useEffect(() => {
@@ -65,37 +65,40 @@ export default function Dashboard() {
     <div>
       {
         isLoading ? (
-          <div className="DashboardDiv">
-            <div className="UserContainer">
-              <Navbar userData={userData} token={token} />
-            </div>
-            <div className="NotePadContainer">
-              <div className="AddNewNoteDiv">
-                <h3>NotePad Application</h3>
-                <button onClick={handleAddNoteClick}>Add New Note</button>
+          <div className='DashboardContainer' >
+            <Navbar />
+            <div className="SubContainer">
+              <div className="UserContainer">
+                <UserInfo userData={userData}/>
               </div>
-              <hr />
-              <div className="NotesDiv">
-                {
-                  note.map((note) => (
-                    <NotePaper key={note._id} note={note} />
-                  ))
-                }
-              </div>
-              <div>
-                <Stack spacing={2}>
-                  <Pagination count={count > 0 ? (Math.ceil(count / 8)) : (1)} page={page} onChange={handlePageChange} />
-                </Stack>
+              <div className="NotePadContainer">
+                <div className="AddNewNoteDiv">
+                  <h3>NotePad</h3>
+                  <button onClick={handleAddNoteClick}>Add New Note</button>
+                </div>
+                <hr />
+                <div className="NotesDiv">
+                  {
+                    note.map((note) => (
+                      <NotePaper key={note._id} note={note} />
+                    ))
+                  }
+                </div>
+                <div>
+                  <Stack spacing={2}>
+                    <Pagination count={count > 0 ? (Math.ceil(count / 12)) : (1)} page={page} onChange={handlePageChange} />
+                  </Stack>
+                </div>
               </div>
             </div>
           </div>
         ) : (
-          <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "50px" }}>
+          <div id='LoadingDiv'>
             <Loading />
           </div>
         )
       }
-
     </div>
+
   )
 }

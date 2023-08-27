@@ -30,19 +30,18 @@ export default function LocationWeather() {
         <div>
             {
                 check ? (
-
                     <div className='WeatherDiv'>
-                        <p>
-                            <span>Location:</span><span className='weatInf'>{weather.name}</span>
+                        <p className='UserInfoP'>
+                            <span>Location:</span><span className='UserInfoSp'>{weather.name}</span>
                         </p>
-                        <p>
-                            <span>Desc:</span><span className='weatInf'>{weather.weather.map(data => data.description).join(", ")}</span>
+                        <p className='UserInfoP'>
+                            <span>Desc:</span><span className='UserInfoSp'>{weather.weather.map(data => data.description).join(", ")}</span>
                         </p>
-                        <p>
-                            <span>Temp:</span><span className='weatInf'>{weather.main.temp}°C</span>
+                        <p className='UserInfoP'>
+                            <span>Temp:</span><span className='UserInfoSp'>{weather.main.temp}°C</span>
                         </p>
-                        <p>
-                            <span>Date:</span><span className='weatInf'>{new Date(weather.dt * 1000).toLocaleDateString()}</span>
+                        <p className='UserInfoP'>
+                            <span>Date:</span><span className='UserInfoSp'>{new Date(weather.dt * 1000).toLocaleDateString()}</span>
                         </p>
                     </div>) : (
                     <p>Konum Bilgisi Yükleniyor...</p>

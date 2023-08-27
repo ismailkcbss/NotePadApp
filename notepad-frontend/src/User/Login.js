@@ -4,8 +4,8 @@ import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { userActions } from '../redux/slice/userSlice';
-import Navbar from '../Components/Navbar';
 import alertify from 'alertifyjs';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 export default function Login() {
 
@@ -15,7 +15,6 @@ export default function Login() {
     }
 
     const [form, setForm] = useState({ ...initialForm });
-    const [userData, setUserData] = useState({})
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -27,8 +26,16 @@ export default function Login() {
             [key]: value,
         })
     }
-
-
+    
+    const handleClickReturn = () => {
+        history.push('/Home')
+      }
+    const handleRegisterClick = () => {
+        history.push('/Register');
+    }
+    const handlePasswordClick = () => {
+        history.push('/PasswordReset');
+    }
 
     const AuthenticationLogin = async (event) => {
         event.preventDefault();
@@ -52,20 +59,12 @@ export default function Login() {
         setForm({ ...initialForm });
     }
 
-    const handleRegisterClick = () => {
-        history.push('/Register');
-    }
-    const handlePasswordClick = () => {
-        history.push('/PasswordReset');
-    }
-
     return (
         <div className='Container'>
-            <div className='NavbarDiv'>
-                <Navbar />
-            </div>
             <div className='LoginDiv'>
-                <h3>Please Enter Your Information </h3>
+                <div className='FormDivHeader'>
+                    <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Please Enter Your Information</h3>
+                </div>
                 <form className='form'>
                     <div className='loginForm'>
                         <input
