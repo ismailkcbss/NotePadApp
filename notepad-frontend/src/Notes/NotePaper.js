@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function NotePaper(props) {
 
-    const { note, setVisited } = props;
+    const { note } = props;
     const history = useHistory();
 
     const handleNoteClick = () => {

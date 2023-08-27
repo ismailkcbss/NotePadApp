@@ -58,7 +58,7 @@ export default function Navbar(props) {
 
                     <div className='Navbar'>
                         <p>Contact Us</p>
-                        <button onClick={handleSendMail}>Send Mail</button>
+                        <button className='NavbarClickButton' onClick={handleSendMail}>Send Mail</button>
                     </div>
                 </div>
             )}

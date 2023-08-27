@@ -22,14 +22,21 @@ const CreateNotes = async (req, res) => {
         console.log(error);
     }
 }
-
+//sort  = küçükten büyüğe için -1 z den a ya veya sondan başa // 1 ise a dan z ye gibi sıralar
+//skip  = verilen sayı kadar atlayıp gösterme
+//limit = her page de gösterilecek sayı miktarı
 const GetAllNotes = async (req, res) => {
+    let { limit, offset } = req.query;
+
     try {
-        const notes = await Notes.find({ user: res.locals.user._id })
+        const notes = await Notes.find({ user: res.locals.user._id }).skip(offset).limit(limit).sort({ "uploadedAt": -1 })
+        const count = await Notes.find({ user: res.locals.user._id }).count();
         res.status(200).json({
             succeded: true,
-            notes
+            notes,
+            count
         })
+
     } catch (error) {
         res.status(500).json({
             succeded: false,
@@ -56,16 +63,16 @@ const GetSingleNote = async (req, res) => {
 
 const DeleteNotes = async (req, res) => {
     try {
-         await Notes.findByIdAndRemove({ _id: req.params.id });
-         res.status(201).json({
-            succeded:true,
-         })
+        await Notes.findByIdAndRemove({ _id: req.params.id });
+        res.status(201).json({
+            succeded: true,
+        })
     } catch (error) {
         res.status(500).json({
             succeded: false,
             error
         })
-        console.log("CATHE =",error);
+        console.log("CATHE =", error);
     }
 }
 const UpdateNotes = async (req, res) => {

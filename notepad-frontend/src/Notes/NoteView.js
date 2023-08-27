@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { axiosInstance } from '../axios.util';
 import { useHistory } from 'react-router-dom';
+import alertify from 'alertifyjs'
 
 export default function NoteView() {
 
@@ -24,22 +25,50 @@ export default function NoteView() {
   }
 
   const GetSingleNote = async () => {
-    try {
-      const { data } = await axiosInstance.get(`/Notes/Note/${id}`);
-      setForm({
-        Title: data.note.Title,
-        Description: data.note.Description,
-      })
-    } catch (error) {
-      alert("Not Getirilemedi")
+    if (id) {
+      try {
+        const { data } = await axiosInstance.get(`/Notes/Note/${id}`);
+        setForm({
+          Title: data.note.Title,
+          Description: data.note.Description,
+        })
+        alertify.success("Success");
+      } catch (error) {
+        alertify.error("Your Note  Not Found");
+      }
     }
   }
 
+  const handleSaveClick = () => {
+    if (!id) {
+      handleNewNoteClick();
+    } else {
+      handleUpNoteClick();
+    }
+  }
 
-  const handleSaveClick = async (event) => {
-    event.preventDefault();
+  const handleNewNoteClick = async () => {
     if (form.Title.trim() === "" || form.Description.trim() === "") {
-      alert("Bilgileri Doldurun")
+      alertify.error("Please Fill in the Missing Information");
+      return;
+    }
+    try {
+      const { data } = await axiosInstance.post(`/Notes/Note`, {
+        Title: form.Title,
+        Description: form.Description
+      })
+      history.push('/Dashboard')
+      alertify.success("Note Added");
+    } catch (error) {
+      alertify.error("Note Not  Added");
+    }
+
+    setForm({ ...initialForm })
+  }
+
+  const handleUpNoteClick = async () => {
+    if (form.Title.trim() === "" || form.Description.trim() === "") {
+      alertify.error("Please Fill in the Missing Information");
       return
     }
     try {
@@ -47,12 +76,12 @@ export default function NoteView() {
         Title: form.Title,
         Description: form.Description
       })
-      alert('başarılı')
       history.push('/Dashboard')
+      alertify.success("Your Note Updated");
     } catch (error) {
-      alert("Not Kaydedilmedi")
-      console.log(error);
+      alertify.error("Your Note Not  Updated");
     }
+    setForm({ ...initialForm })
   }
 
 
@@ -63,13 +92,13 @@ export default function NoteView() {
       history.push('/Dashboard')
     } catch (error) {
       alert("The Note Was Failed Deleted")
-      console.log(error);
     }
   }
 
   useEffect(() => {
     GetSingleNote();
-  }, [id])
+  }, [])
+
   return (
     <div className='NoteViewDiv'>
       <form>
@@ -95,8 +124,17 @@ export default function NoteView() {
         </div>
       </form>
       <div className='NoteViewButtonDiv'>
-        <button className='NoteViewUpButton' onClick={handleSaveClick}>Update</button>
-        <button className='NoteViewDelButton' onClick={handleDeleteClick}>Delete</button>
+        {
+          id ? (
+            <div>
+              <button className='NoteViewUpButton' onClick={handleSaveClick}>Update</button>
+              <button className='NoteViewDelButton' onClick={handleDeleteClick}>Delete</button>
+            </div>
+          ) : (
+            <button className='NoteViewNewSaveButton' onClick={handleSaveClick}>Save</button>
+          )
+        }
+
       </div>
 
 

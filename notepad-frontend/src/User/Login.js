@@ -29,7 +29,7 @@ export default function Login() {
     }
 
 
-    alertify.set('notifier', 'delay', 4); // alert mesajı süresi
+
     const AuthenticationLogin = async (event) => {
         event.preventDefault();
         if (form.Email.trim() === "" || form.Password.trim() === "") {
@@ -46,7 +46,7 @@ export default function Login() {
             dispatch(userActions.login(data))
             history.push('/Dashboard');
             alertify.success("Giriş Başarılı");
-        }catch (error) {
+        } catch (error) {
             alertify.error(error.response.data.error);
         }
         setForm({ ...initialForm });

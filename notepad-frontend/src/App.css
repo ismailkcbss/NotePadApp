@@ -97,7 +97,8 @@ textarea:focus {
 .LoginButton,
 .PasswordResetButton,
 .NewPasswordButton,
-.ContactButton {
+.ContactButton,
+.NoteViewNewSaveButton {
     border-radius: .5em;
     font-size: 1em;
     height: 3em;
@@ -115,7 +116,8 @@ textarea:focus {
 .LoginButton:hover,
 .PasswordResetButton:hover,
 .NewPasswordButton:hover,
-.ContactButton:hover {
+.ContactButton:hover,
+.NoteViewNewSaveButton:hover {
     background-color: rgba(2, 128, 2, 0.644);
     cursor: pointer;
     color: rgb(179, 179, 179);
@@ -255,7 +257,7 @@ textarea:focus {
     align-items: center;
 }
 
-.UserButton button {
+.NavbarClickButton {
     color: white;
     background: linear-gradient(150deg,
             rgba(13, 100, 87, 0.856) 5%,
@@ -267,7 +269,7 @@ textarea:focus {
     transition: ease-in-out .3s;
 }
 
-.UserButton button:hover {
+.NavbarClickButton:hover {
     background: linear-gradient(150deg,
             rgba(69, 143, 132, 0.856) 5%,
             rgba(98, 43, 134, 0.871) 100%);

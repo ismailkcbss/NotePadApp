@@ -6,8 +6,9 @@ import Loading from '../Loading';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../redux/slice/userSlice';
 import * as storage from '../storage.helper'
-import NoteAddModal from '../Notes/NoteAddModal';
 import { useHistory } from 'react-router-dom';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 export default function Dashboard() {
 
@@ -18,8 +19,13 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState("");
   const [note, setNote] = useState([])
-  const [visited, setVisited] = useState(false)
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState("");
 
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   const dispatch = useDispatch();
 
@@ -36,21 +42,23 @@ export default function Dashboard() {
 
   const getAllNotes = async () => {
     try {
-      const { data } = await axiosInstance.get(`/Notes/Note`)
+      const { data } = await axiosInstance.get(`/Notes/Note?limit=8&offset=${(page - 1) * 8}`)
       setNote(data.notes)
+      setCount(data.count)
     } catch (error) {
       alert("Error Notes")
     }
   }
-
   const handleAddNoteClick = () => {
-    setVisited(true)
+    history.push('/NoteView')
   }
 
+  useEffect(() => {
+    getAllNotes();
+  }, [page])
 
   useEffect(() => {
     getUser();
-    getAllNotes();
   }, [])
 
   return (
@@ -58,15 +66,6 @@ export default function Dashboard() {
       {
         isLoading ? (
           <div className="DashboardDiv">
-            {
-              visited ? (
-                <div className='DashboardModal'>
-                  <NoteAddModal setVisited={setVisited} />
-                </div>
-              ) : (
-                ""
-              )
-            }
             <div className="UserContainer">
               <Navbar userData={userData} token={token} />
             </div>
@@ -79,9 +78,14 @@ export default function Dashboard() {
               <div className="NotesDiv">
                 {
                   note.map((note) => (
-                      <NotePaper key={note._id} note={note} setVisited={setVisited} />
+                    <NotePaper key={note._id} note={note} />
                   ))
                 }
+              </div>
+              <div>
+                <Stack spacing={2}>
+                  <Pagination count={count > 0 ? (Math.ceil(count / 8)) : (1)} page={page} onChange={handlePageChange} />
+                </Stack>
               </div>
             </div>
           </div>

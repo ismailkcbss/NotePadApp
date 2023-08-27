@@ -22,7 +22,6 @@ export default function Contact() {
                 [key]: value
             })
     }
-    alertify.set('notifier', 'delay', 4); // alert mesajı süresi
     const handleSendClick = async (event) => {
         event.preventDefault();
         if (form.FullName.trim() === "" || form.Email.trim() === "" || form.Description.trim() === "") {

@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Components/Home'
 import Login from './User/Login'
 import Register from './User/Register'
 import Dashboard from './User/Dashboard';
@@ -13,9 +14,11 @@ import Contact from './User/Contact';
 import NoteView from './Notes/NoteView';
 import NewPassword from './User/NewPassword';
 import PasswordReset from './User/PasswordReset';
+import alertify from 'alertifyjs';
 
 
 function App() {
+    alertify.set('notifier', 'delay', 4); // alert mesajı süresi
 
     const user = useSelector((state) => state.user);
 
@@ -44,7 +47,9 @@ function App() {
         <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/Register' component={Register} />
+            <Route exact path='/Home' component={Home} />
             <Route exact path='/Contact' component={Contact} />
+            <Route exact path='/NoteView' component={NoteView} />
             <Route exact path='/NoteView/:id' component={NoteView} />
             <Route exact path='/PasswordReset' component={PasswordReset} />
             <Route exact path='/NewPassword' component={NewPassword} />
@@ -53,5 +58,4 @@ function App() {
     </BrowserRouter>
 )
 }
-
 export default App;
