@@ -17,20 +17,21 @@ import nodemailer from 'nodemailer'
 const CreateUser = async (req, res, next) => { // Kullanıcı kayıt fonksiyonu
     try {
         const user = await User.create(req.body) // body den gelen istek doğrultusunda User modalda kullanıcı oluşturma.
-        res.status(200).json({ user: user._id }); // Başarılı bir istek ise cevap olarak json bir veri dönüyoruz.
+        res.status(200).json({
+            succeded: true,
+            user: user._id
+        }); // Başarılı bir istek ise cevap olarak json bir veri dönüyoruz.
         next();
     } catch (error) {
         let errors2 = {}; // let ile tanımlamamızın sebebi ilerleryen durumlarda değişiklik olabileceği için
 
         if (error.code === 11000) { // DB den gelen hata kodu unique olmasını istediğimiz veriler için daha önceden kullanıldıysa
             errors2.email = "Bu email ile daha önceden kayıt olunmuş";
-            next();
         }
         if (error.name === "ValidationError") { // Yapılan hataları teker teker bulmak için bu koşulu yazıyoruz
             Object.keys(error.errors).forEach((key) => { //Error objesinin içinde errorsda yazan birden fazla hata olması durumda hepsini yazdırmak için foreach metodunu kullanıyoruz.ve key parametresi ile teker teker yazdırmak için ayrıştıyoruz.
                 errors2[key] = error.errors[key].message; // Teker teker errorde çıkan hataları errors2 değişkenine atıyoruz.
             });
-            next();
         }
         res.status(400).json(errors2); // Eğer girilen bilgilerde yanlışlık var ise hatayı ekrana json verisi şeklinde basıyoruz.
         console.log(error);
@@ -81,6 +82,27 @@ const LoginUser = async (req, res) => {
     }
 }
 
+const EditUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        user.FullName = req.body.FullName;
+        user.Email = req.body.Email;
+        user.Password = req.body.Password;
+        user.Phone = req.body.Phone;
+        user.Image = req.body.Image;
+        await user.save();
+        res.status(201).json({
+            succeded: true,
+            user
+        })
+    } catch (error) {
+        res.status(500).json({
+            succeded: false,
+            error
+        })
+    }
+}
+
 const GetAllUser = async (req, res) => {
     try {
         const user = await User.find({})
@@ -121,6 +143,7 @@ const UserMe = async (req, res, next) => {
         next();
     }
 }
+
 const PasswordReset = async (req, res, next) => {
     try {
         const Email = req.params.id;
@@ -139,7 +162,7 @@ const PasswordReset = async (req, res, next) => {
 
                     await user.save();
                     res.status(201).json({
-                        succeded:true,
+                        succeded: true,
                     })
                 }
             });
@@ -161,13 +184,11 @@ const PasswordReset = async (req, res, next) => {
     }
 }
 
-
 const CreateUserToken = (userId) => { // userid yi kullanarak jwt token oluşturma
     return jwt.sign({ userId }, process.env.JWT_SECRET, { // ilk veri kullanıcıya hangi verisine göre token verileceği, ikinci veri ise jwt yi gönderen kişinin kimliğini doğrulamak ve güvenliği sağlamak için
         expiresIn: "1d" // 1 gün geçerlilik süresi ardından token süresi dolar
     })
 }
-
 
 const SendMail = async (req, res, next) => {
 
@@ -493,7 +514,8 @@ color:#ffffff!important;
 <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top:15px;padding-bottom:40px"><h1 style="Margin:0;font-family:arial, 'helvetica neue', helvetica, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:46px;font-style:normal;font-weight:bold;line-height:55px;color:#333333">Thanks For Joining Us!</h1></td>
 </tr>
 <tr>
-<td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:25px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;letter-spacing:0;color:#333333;font-size:16px;margin-left:40px">Hello, ${req.body.FullName} Thank you for joining us! You are now a member of MyRestaurant. This means that you will be able to see our new news and benefit from the services we offer you!</p></td>
+<td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:25px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;letter-spacing:0;color:#333333;font-size:16px;margin-left:40px">Hello, 
+${req.body.FullName} Thank you for joining us! You are now a member of NotePad. This means that you will be able to see our new news and benefit from the services we offer you!</p></td>
 </tr>
 </table></td>
 </tr>
@@ -534,10 +556,12 @@ color:#ffffff!important;
 <td align="left" style="padding:0;Margin:0;width:530px">
 <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-radius:0 10px 10px 0;background-color:#e8eafb" bgcolor="#e8eafb" role="presentation">
 <tr>
-<td align="left" style="padding:0;Margin:0;padding-top:10px;padding-left:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong>${req.body.Email}</strong></p></td>
+<td align="left" style="padding:0;Margin:0;padding-top:10px;padding-left:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong>
+${req.body.Email}</strong></p></td>
 </tr>
 <tr>
-<td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-left:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong>${req.body.Password}</strong></p></td>
+<td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-left:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong>
+${req.body.Password}</strong></p></td>
 </tr>
 </table></td>
 </tr>
@@ -587,15 +611,14 @@ color:#ffffff!important;
             port: 465,
             secure: true,
             auth: {
-                // TODO: replace `user` and `pass` values from <https://forwardemail.net>
                 user: process.env.NODE_MAIL,
                 pass: process.env.NODE_PASS,
             },
         });
         // send mail with defined transport object
-        const info = await transporter.sendMail({
+        await transporter.sendMail({
             to: `${req.body.Email}`, // list of receivers
-            subject: `Mail From: İmfapkcss0132@gmail.com`, // Subject line
+            subject: process.env.NODE_MAIL, // Subject line
             html: htmlTemplate, // html body
         });
         res.status(201).json({
@@ -607,10 +630,11 @@ color:#ffffff!important;
             succeded: false,
             error
         })
-        next();
         console.log("Error", error);
+        next();
     }
 }
+
 
 const PasswordResetSendMail = async (req, res, next) => {
     const htmlTemplate = `
@@ -831,4 +855,4 @@ const PasswordResetSendMail = async (req, res, next) => {
 }
 
 
-export { CreateUser, CreateUserToken, LoginUser, GetAllUser, UserMe, PasswordReset, SendMail, RegisterSendMail, PasswordResetSendMail } // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.
+export { CreateUser, CreateUserToken, LoginUser, EditUser, GetAllUser, UserMe, PasswordReset, SendMail, RegisterSendMail, PasswordResetSendMail } // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.

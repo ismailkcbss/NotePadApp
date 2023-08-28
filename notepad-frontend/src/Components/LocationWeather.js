@@ -35,10 +35,10 @@ export default function LocationWeather() {
                             <span>Location:</span><span className='UserInfoSp'>{weather.name}</span>
                         </p>
                         <p className='UserInfoP'>
-                            <span>Desc:</span><span className='UserInfoSp'>{weather.weather.map(data => data.description).join(", ")}</span>
+                            <span>Temp:</span><span className='UserInfoSp'>{weather.main.temp}°C</span>
                         </p>
                         <p className='UserInfoP'>
-                            <span>Temp:</span><span className='UserInfoSp'>{weather.main.temp}°C</span>
+                            <span>Temp Desc:</span><span className='UserInfoSp'>{weather.weather.map(data => data.description).join(", ")}</span>
                         </p>
                         <p className='UserInfoP'>
                             <span>Date:</span><span className='UserInfoSp'>{new Date(weather.dt * 1000).toLocaleDateString()}</span>

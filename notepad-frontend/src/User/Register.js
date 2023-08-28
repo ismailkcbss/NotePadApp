@@ -5,7 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../Firebase/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
+import alertify from 'alertifyjs';
 
 export default function Register() {
 
@@ -15,11 +15,10 @@ export default function Register() {
     Password: "",
     Phone: "",
   }
+  const history = useHistory();
 
   const [form, setForm] = useState({ ...initialForm });
   const [image, setImage] = useState(null);
-
-  const history = useHistory();
 
   const handleTextChange = (value, key) => {
     setForm({
@@ -27,6 +26,11 @@ export default function Register() {
       [key]: value,
     })
   }
+
+  const handleClickReturn = () => {
+    history.push('/')
+  }
+
   //Firebase gönderilecek image nin url adresini takip etme
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
@@ -59,9 +63,7 @@ export default function Register() {
 
     setForm({ ...initialForm })
   }
-  const handleClickReturn = () => {
-    history.push('/')
-  }
+
   return (
     <div className='RegisterDiv'>
       <div className='FormDivHeader'>

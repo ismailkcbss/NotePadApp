@@ -35,7 +35,7 @@ export default function Contact() {
                 Description: form.Description
             })
             alertify.success("Başarılı")
-
+            history.push('/Dashboard')
             setTimeout(() => {
                 setForm({ ...initialForm })
             }, 4000);

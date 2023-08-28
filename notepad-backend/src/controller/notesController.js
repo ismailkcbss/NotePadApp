@@ -22,6 +22,7 @@ const CreateNotes = async (req, res) => {
         console.log(error);
     }
 }
+
 //sort  = küçükten büyüğe için -1 z den a ya veya sondan başa // 1 ise a dan z ye gibi sıralar
 //skip  = verilen sayı kadar atlayıp gösterme
 //limit = her page de gösterilecek sayı miktarı
@@ -75,13 +76,14 @@ const DeleteNotes = async (req, res) => {
         console.log("CATHE =", error);
     }
 }
+
 const UpdateNotes = async (req, res) => {
     try {
         const notes = await Notes.findById(req.params.id);
 
         notes.Title = req.body.Title;
         notes.Description = req.body.Description;
-        notes.save();
+       await notes.save();
         res.status(201).json({
             succeded: true,
             notes

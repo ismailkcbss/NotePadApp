@@ -205,7 +205,7 @@ textarea:focus {
     line-height: 3em;
     display: flex;
     justify-content: flex-end;
-    background: linear-gradient(150deg,
+    background: linear-gradient(120deg,
             rgba(69, 143, 132, 0.856) 5%,
             rgba(98, 43, 134, 0.871) 100%);
     padding: 1em;
@@ -239,9 +239,9 @@ textarea:focus {
 }
 
 .UserContainer {
-    background: linear-gradient(80deg,
+    background: linear-gradient(180deg,
             rgba(184, 184, 184, 0.158) 35%,
-            rgba(228, 169, 8, 0.39) 100%);
+            rgba(218, 181, 79, 0.562) 100%);
     padding: .5em 1em .5em 1em;
 }
 
@@ -262,7 +262,7 @@ textarea:focus {
     align-items: center;
 }
 
-.AddNewNoteDiv button {
+.AddNewNoteButton {
     width: 13em;
     height: 2.5em;
     border: none;
@@ -270,31 +270,33 @@ textarea:focus {
     font-weight: bold;
     transition: ease-in-out .2s;
     color: white;
-    background: linear-gradient(150deg,
-            rgba(13, 100, 87, 0.856) 5%,
-            rgba(70, 7, 112, 0.871) 100%);
+    background: linear-gradient(120deg,
+            rgba(69, 143, 132, 0.856) 5%,
+            rgba(98, 43, 134, 0.871) 100%);
 
 }
 
-.AddNewNoteDiv button:hover {
+.AddNewNoteButton:hover {
     background-color: rgba(0, 128, 0, 0.726);
     cursor: pointer;
 }
 
-
-
+.PaginationDiv button{
+    width: 5em;
+}
 /*COMPONENTS CLASS USERINFO CSS*/
 .UserInfoDiv {
     width: 100%;
     color: rgba(8, 8, 8, 0.842);
     padding: .5em 1em .5em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .ImageDiv {
-    width: 100%;
+    width: 25em;
     height: 15em;
-    display: flex;
-    justify-content: flex-start;
 }
 
 .ImageDiv img {
@@ -314,7 +316,6 @@ textarea:focus {
     align-items: start;
     font-size: 1.1em;
     font-weight: bold;
-
 }
 
 .UserInfoP {
@@ -329,16 +330,19 @@ textarea:focus {
     text-align: start;
 }
 
-.UserButton {
-    width: 100%;
-    height: 12em;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+.UserInfoButton{
+width: 10em;
+height: 2.5em;
+line-height: 2.5em;
+border: none;
+background-color: rgba(236, 197, 152, 0.712);
+border-radius: .4em;
+transition: ease-in-out .2s;
 }
-
-
+.UserInfoButton:hover{
+    cursor: pointer;
+    background-color: rgba(238, 186, 127, 0.712);
+}
 /*NotePaper CSS*/
 
 .MyNotesDiv {
@@ -349,15 +353,15 @@ textarea:focus {
 .NotePaperDiv {
     width: 100%;
     height: 100%;
-    background: linear-gradient(150deg,
-            rgba(69, 143, 132, 0.856) 5%,
-            rgba(98, 43, 134, 0.871) 100%);
+    background: linear-gradient(180deg,
+            rgba(241, 231, 142, 0.61) 35%,
+            rgba(94, 180, 144, 0.466) 100%);
     border-radius: 1em;
     transition: ease-in-out .2s;
 }
 
 .NotePaperDiv:hover {
-    background-color: rgba(168, 168, 168, 0.555) !important;
+    background-color: rgba(184, 184, 184, 0.555) !important;
     cursor: pointer;
 }
 
@@ -434,7 +438,7 @@ textarea:focus {
 .NoteTitle span,
 .NoteDescription span,
 .NoteUpload span {
-    color: rgba(206, 214, 214, 0.699);
+    color: rgba(160, 160, 160, 0.699);
 }
 
 .AddNewNoteModel {

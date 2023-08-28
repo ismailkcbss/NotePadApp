@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Components/Home'
 import Login from './User/Login'
 import Register from './User/Register'
+import EditUser from './User/EditUser'
 import Dashboard from './User/Dashboard';
 import { useEffect } from 'react';
 import { axiosInstance } from './axios.util';
@@ -47,6 +48,7 @@ function App() {
         <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/Register' component={Register} />
+            <Route exact path='/EditUser/:id' component={EditUser} />
             <Route exact path='/Home' component={Home} />
             <Route exact path='/Contact' component={Contact} />
             <Route exact path='/NoteView' component={NoteView} />

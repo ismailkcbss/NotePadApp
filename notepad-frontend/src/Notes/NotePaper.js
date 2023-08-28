@@ -1,6 +1,4 @@
 import React from 'react'
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import moment from 'moment/moment'; // DB den gelen tarihi formatlamak
 import { useHistory } from 'react-router-dom';
 

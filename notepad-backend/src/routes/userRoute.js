@@ -10,6 +10,7 @@ router.route('/Login').post(userController.LoginUser);// Eğerki bir yerden /Log
 router.route('/PasswordReset').post(userController.PasswordResetSendMail);
 router.route('/NewPassword/:id').post(userController.PasswordReset);
 router.route('/GetAllUser').get(userController.GetAllUser);
+router.route('/EditUser/:id').put(userController.EditUser);
 router.route('/UserMe')
     .get(authMiddleware.AuthenticateToken, userController.UserMe);
 

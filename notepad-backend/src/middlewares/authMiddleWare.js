@@ -22,20 +22,24 @@ const CheckUser = async (req, res, next) => {// Bu fonksiyonda get isteği geldi
     }
 };
 
+
 const AuthenticateToken = async (req, res, next) => { // Bu fonksiyon kullanıcı kısıtlaması için token kotnrol etme ve eğerki yoksa giriş yapması için yönlendirme yapıyoruz.
     try {
         const token = req.cookies.jwt;// Eğerki kullanıcı giriş yaptıysa ona verilmiş olan token cookie de gömülüdür burda kontrolümüzü sağlamak için ordan alıp token değişkenine atadık.
         if (token) {
             jwt.verify(token, process.env.JWT_SECRET, (err) => { // tokenı ve güvenlik kodlarımızı yazıktan sonra eğerki hata durumu oluşursa yani token olmadan yetkisiz sayfaya erişim durumunda mesaj veriyoruz.
                 if (err) {
-                    console.log(err.message);
-                    res.redirect('/Login'); // Login sayfasına yönlendirme
+                    res.status(401).json({
+                        succeeded: false,
+                        err
+                    })
+                    res.redirect('/'); // Login sayfasına yönlendirme
                 } else {
                     next(); // eğerki tokenı varsa sonraki aşamaya yani sayfaya erişim sağlayabilir.
                 }
             });
         } else {
-            res.redirect('/Login') // Token olmaması durumunda yönlendirilen sayfa
+            res.redirect('/') // Token olmaması durumunda yönlendirilen sayfa
         }
     } catch (error) { // Catche ye düştüyse eğer yetkisi olmadığını yani token sahibi olmadığını anlıyoruz ve hata mesajı veriyoruz
         res.status(401).json({

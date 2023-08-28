@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import Navbar from '../Components/Navbar';
 
 export default function Dashboard() {
-  
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -69,26 +69,35 @@ export default function Dashboard() {
             <Navbar />
             <div className="SubContainer">
               <div className="UserContainer">
-                <UserInfo userData={userData}/>
+                <UserInfo userData={userData} />
               </div>
               <div className="NotePadContainer">
                 <div className="AddNewNoteDiv">
                   <h3>NotePad</h3>
-                  <button onClick={handleAddNoteClick}>Add New Note</button>
+                  <div className='PaginationDiv'>
+                    <Stack spacing={2}>
+                      <Pagination count={count > 0 ? (Math.ceil(count / 12)) : (1)} page={page} onChange={handlePageChange} />
+                    </Stack>
+                  </div>
+                  <button className='AddNewNoteButton' onClick={handleAddNoteClick}>Add New Note</button>
                 </div>
                 <hr />
-                <div className="NotesDiv">
-                  {
-                    note.map((note) => (
-                      <NotePaper key={note._id} note={note} />
-                    ))
-                  }
-                </div>
-                <div>
-                  <Stack spacing={2}>
-                    <Pagination count={count > 0 ? (Math.ceil(count / 12)) : (1)} page={page} onChange={handlePageChange} />
-                  </Stack>
-                </div>
+                {
+                  note[0] ? (
+                    <div className="NotesDiv">
+                      {
+                        note.map((note) => (
+                          <NotePaper key={note._id} note={note} />
+                        ))
+                      }
+                    </div>
+                  ) : (
+                    <div style={{ width: "100%", height: "15em", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                      <p>There is no note yet. Click on the button and add </p>
+                    </div>
+                  )
+                }
+
               </div>
             </div>
           </div>
@@ -98,7 +107,7 @@ export default function Dashboard() {
           </div>
         )
       }
-    </div>
+    </div >
 
   )
 }
