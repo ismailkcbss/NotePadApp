@@ -5,7 +5,7 @@ import Login from './User/Login'
 import Register from './User/Register'
 import EditUser from './User/EditUser'
 import Dashboard from './User/Dashboard';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { axiosInstance } from './axios.util';
 import * as storage from './storage.helper'
 import { userActions } from './redux/slice/userSlice';
@@ -16,6 +16,8 @@ import NoteView from './Notes/NoteView';
 import NewPassword from './User/NewPassword';
 import PasswordReset from './User/PasswordReset';
 import alertify from 'alertifyjs';
+import Navbar from './Components/Navbar';
+import Panel from './Components/Panel';
 
 
 function App() {
@@ -25,12 +27,14 @@ function App() {
 
     const dispatch = useDispatch();
     
+    const [userData, setUserData] = useState("")
 
      const getUserData = async () => {
         const token = storage.getValueByKey("jwt");
         if (token) {
             try {
                 const { data } = await axiosInstance.get('/Users/UserMe');
+                setUserData(data.user)
                 dispatch(userActions.set(data.user)) 
             } catch (error) {
                 console.log(error);
@@ -45,11 +49,13 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Navbar userData={userData} />
         <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/Register' component={Register} />
             <Route exact path='/EditUser/:id' component={EditUser} />
             <Route exact path='/Home' component={Home} />
+            <Route exact path='/Panel' component={Panel} />
             <Route exact path='/Contact' component={Contact} />
             <Route exact path='/NoteView' component={NoteView} />
             <Route exact path='/NoteView/:id' component={NoteView} />

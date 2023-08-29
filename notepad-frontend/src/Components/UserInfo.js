@@ -8,7 +8,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useHistory } from 'react-router-dom';
 
 
-export default function Navbar(props) {
+export default function UserInfo(props) {
 
     const { userData } = props;
     const id = userData._id;

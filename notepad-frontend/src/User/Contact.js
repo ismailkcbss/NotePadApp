@@ -44,7 +44,7 @@ export default function Contact() {
         }
     }
     const handleClickReturn = () => {
-        history.push('/Home')
+        history.push('/Dashboard')
     }
     return (
         <div className='ContactDiv'>

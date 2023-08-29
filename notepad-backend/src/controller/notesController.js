@@ -30,7 +30,7 @@ const GetAllNotes = async (req, res) => {
     let { limit, offset } = req.query;
 
     try {
-        const notes = await Notes.find({ user: res.locals.user._id }).skip(offset).limit(limit).sort({ "uploadedAt": -1 })
+        const notes = await Notes.find({ user: res.locals.user._id }).skip(offset).limit(limit).sort({ "updatedAt": -1 })
         const count = await Notes.find({ user: res.locals.user._id }).count();
         res.status(200).json({
             succeded: true,

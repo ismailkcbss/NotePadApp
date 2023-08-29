@@ -8,7 +8,6 @@ import { userActions } from '../redux/slice/userSlice';
 import { useHistory } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import Navbar from '../Components/Navbar';
 
 export default function Dashboard() {
 
@@ -66,7 +65,6 @@ export default function Dashboard() {
       {
         isLoading ? (
           <div className='DashboardContainer' >
-            <Navbar />
             <div className="SubContainer">
               <div className="UserContainer">
                 <UserInfo userData={userData} />
