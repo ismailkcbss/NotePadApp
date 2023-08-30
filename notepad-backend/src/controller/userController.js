@@ -103,6 +103,20 @@ const EditUser = async (req, res) => {
   }
 };
 
+const DeleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndRemove({ _id: req.params.id });
+    res.status(201).json({
+      succeded: true
+    });
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    })
+  }
+}
+
 const GetAllUser = async (req, res) => {
   try {
     const user = await User.find({});

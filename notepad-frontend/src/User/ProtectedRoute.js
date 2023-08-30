@@ -10,7 +10,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
             render={(props) => token ? (
                 <Component />
             ) : (
-                <Redirect to="/" />
+                <Redirect to="/Login" />
             )}
         />
     )

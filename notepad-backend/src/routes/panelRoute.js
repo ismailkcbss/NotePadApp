@@ -5,7 +5,10 @@ const router = express.Router();
 
 router.route('/Content')
 .post(panelController.CreatePanel)
-.get(panelController.GetPanel)
+.get(panelController.GetPagePanel)
 
+router.route('/Content/:id')
+.get(panelController.GetPanel)
+.put(panelController.UpdatePanel)
 
 export default router;

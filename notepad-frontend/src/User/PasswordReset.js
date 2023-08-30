@@ -34,7 +34,7 @@ export default function PasswordReset() {
     }
   }
   const handleClickReturn = () => {
-    history.push('/')
+    history.push('/Login')
   }
   return (
     <div className='PasswordResetDiv'>

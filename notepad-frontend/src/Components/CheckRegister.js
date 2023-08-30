@@ -1,13 +1,6 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
 
 export default function CheckRegister() {
-
-    const history = useHistory();
-
-    const handleClick = () => {
-        history.push('/');
-    }
 
     return (
         <div

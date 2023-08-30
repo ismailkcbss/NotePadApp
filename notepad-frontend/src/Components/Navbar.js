@@ -27,14 +27,14 @@ export default function Navbarr(props) {
   };
 
   const handleLogin = () => {
-    history.push("/");
+    history.push("/Login");
   };
 
   const handlePanel = () => {
-    history.push("/Panel");
+    history.push("/AdminPanel");
   };
   const handleHome = () => {
-    history.push("/Home");
+    history.push("/");
   };
   const handleClickLogout = () => {
     dispatch(userActions.logout());

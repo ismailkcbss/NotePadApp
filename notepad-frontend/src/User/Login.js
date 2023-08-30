@@ -28,7 +28,7 @@ export default function Login() {
     }
     
     const handleClickReturn = () => {
-        history.push('/Home')
+        history.push('/')
       }
     const handleRegisterClick = () => {
         history.push('/Register');
@@ -51,7 +51,7 @@ export default function Login() {
             storage.setKeyWithValue("jwt", data.token);
             setApiToken(data.token);
             dispatch(userActions.login(data))
-            history.push('/Dashboard');
+            history.push('/');
             alertify.success("Giriş Başarılı");
         } catch (error) {
             alertify.error(error.response.data.error);

@@ -28,7 +28,7 @@ export default function Register() {
   }
 
   const handleClickReturn = () => {
-    history.push('/')
+    history.push('/Login')
   }
 
   //Firebase gönderilecek image nin url adresini takip etme

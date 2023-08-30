@@ -93,7 +93,8 @@ form {
     background-color: rgba(240, 240, 240, 0.712);
 }
 
-textarea {
+.NoteViewForm textarea,
+.ContactForm textarea {
     margin-bottom: 1em;
     border: none;
     resize: none;
@@ -103,7 +104,8 @@ textarea {
     padding: .2em;
 }
 
-textarea:focus {
+.NoteViewForm textarea:focus,
+.ContactForm textarea:focus {
     outline: none;
 }
 
@@ -477,6 +479,9 @@ textarea:focus {
 .PanelDiv {
     width: 100%;
     height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em 0 1em;
 }
 
 .PanelDiv .PanelForm {
@@ -500,9 +505,23 @@ textarea:focus {
     color: rgba(84, 174, 209, 0.986);
 }
 
-.PanelInput::placeholder {
+.PanelInput::placeholder,
+.PanelForm textarea::placeholder {
     color: rgba(84, 174, 209, 0.192);
 }
+
+.PanelForm textarea {
+    resize: none;
+    background-color: transparent;
+    font-size: 1.1em;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid rgba(143, 194, 214, 0.603);
+    outline-color: rgba(84, 174, 209, 0.603);
+    border-radius: .4em;
+    color: rgba(84, 174, 209, 0.986);
+}
+
 
 .PanelButton {
     width: 100%;
@@ -518,4 +537,8 @@ textarea:focus {
 .PanelButton:hover {
     cursor: pointer;
     background-color: rgba(54, 163, 206, 0.692);
+    color: rgba(177, 20, 20, 0.815);
 }
+
+/*ADMİN PANEL CSS*/
+

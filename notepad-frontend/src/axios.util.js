@@ -20,8 +20,8 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       storage.setKeyWithValue("jwt", "");
-      if (window.location.pathname !== '/')
-        window.location.assign('/');
+      if (window.location.pathname !== '/Login')
+        window.location.assign('/Login');
 
       return Promise.reject(error);
     }
