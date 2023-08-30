@@ -41,7 +41,7 @@ export default function Register() {
   const handleClickRegistration = async (event) => {
     event.preventDefault();
     if (form.FullName.trim() === "" || form.Email.trim() === "" || form.Password.trim() === "" || form.Phone.trim() === "") {
-      alert("Please Fill in the Missing Information")
+      alertify.error("Please Fill in the Missing Information")
       return;
     }
     const imageRef = ref(storage, uuidv4());
@@ -56,10 +56,10 @@ export default function Register() {
         Phone: form.Phone,
         Image: result
       })
-      alert("Registration Success")
-      history.push('/');
+      alertify.success("Registration Success");
+      history.push('/RegisterDesc');
     } catch (error) {
-      alert("Hatalı giris");
+      alertify.error("Hatalı giris");
     }
 
     setForm({ ...initialForm })

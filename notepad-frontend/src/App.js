@@ -18,6 +18,9 @@ import PasswordReset from './User/PasswordReset';
 import alertify from 'alertifyjs';
 import Navbar from './Components/Navbar';
 import Panel from './Components/Panel';
+import RegisterDesc from './Components/RegisterDesc';
+import NewPassDesc from './Components/NewPassDesc';
+import CheckRegister from './Components/CheckRegister';
 
 
 function App() {
@@ -53,12 +56,15 @@ function App() {
         <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/Register' component={Register} />
-            <Route exact path='/EditUser/:id' component={EditUser} />
+            <Route exact path='/RegisterDesc' component={RegisterDesc} />
+            <Route exact path='/NewPassDesc' component={NewPassDesc} />
+            <Route exact path='/CheckRegister' component={CheckRegister} />
+            <ProtectedRoute exact path='/EditUser/:id' component={EditUser} />
             <Route exact path='/Home' component={Home} />
-            <Route exact path='/Panel' component={Panel} />
+            <ProtectedRoute exact path='/Panel' component={Panel} />
             <Route exact path='/Contact' component={Contact} />
-            <Route exact path='/NoteView' component={NoteView} />
-            <Route exact path='/NoteView/:id' component={NoteView} />
+            <ProtectedRoute exact path='/NoteView' component={NoteView} />
+            <ProtectedRoute exact path='/NoteView/:id' component={NoteView} />
             <Route exact path='/PasswordReset' component={PasswordReset} />
             <Route exact path='/NewPassword' component={NewPassword} />
             <ProtectedRoute exact path='/Dashboard' component={Dashboard} />

@@ -39,19 +39,18 @@ export default function Register() {
       setImage(e.target.files[0]);
     }
   };
-  console.log(image);
-  const UserUpdate = async () => {
-    var newFotoUrl = null;  
+
+  const UserUpdate = async (event) => {
+
+    event.preventDefault();
     try {
-      debugger;
+      let newFotoUrl = null;
       if (image) {
         const imageRef = ref(storage, uuidv4());
         await uploadBytes(imageRef, image);
         newFotoUrl = await getDownloadURL(imageRef);
         setImg(newFotoUrl);
       }
-      debugger;
-      console.log(newFotoUrl);
       const { data } = await axiosInstance.post(`/Users/EditUser/${id}`, {
         FullName: form.FullName,
         Email: form.Email,
@@ -59,12 +58,12 @@ export default function Register() {
         Image: newFotoUrl || img,
       });
       history.push("/Dashboard");
-      alertify.Success("Success");
+      alertify.success("Success");
     } catch (error) {
       alertify.error(error);
+      console.log(error);
     }
   };
-  console.log(img);
   const UserMe = async () => {
     const token = Storage.getValueByKey("jwt");
     if (token) {

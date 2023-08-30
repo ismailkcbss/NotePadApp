@@ -38,8 +38,19 @@ export default function PasswordReset() {
   }
   return (
     <div className='PasswordResetDiv'>
+
+      <div style={{marginBottom:"3em" ,width:"100%",height:"auto",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/notepadapp-96bda.appspot.com/o/PassReset.png?alt=media&token=835aba3c-432b-4e5d-916f-a115a358010c"
+          alt="Register Success"
+          style={{ width: "20em" }}
+        />
+        <h1>If You Want to Reset Your Password.</h1>
+        <h4>Type the registered mailing address in the field below. Let's send a reset message to your mailbox.</h4>
+      </div>
+
       <div className='FormDivHeader'>
-        <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Enter the registered email address</h3>
+        <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h4>Enter the registered email address</h4>
       </div>
       <form>
         <div className='PasswordResetForm'>

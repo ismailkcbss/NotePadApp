@@ -30,9 +30,6 @@ export default function Navbarr(props) {
     history.push("/");
   };
 
-  const handleRegister = () => {
-    history.push("/Register");
-  };
   const handlePanel = () => {
     history.push("/Panel");
   };
@@ -50,13 +47,13 @@ export default function Navbarr(props) {
     <div className="NavbarDiv">
       {token ? (
         <div className="NavbarButtonDiv">
-          {/* {userData.Admin ? (
+          {userData.Admin ? (
             <button className="NavbarButton" onClick={handlePanel}>
               Panel
             </button>
           ) : (
             ""
-          )} */}
+          )}
           <button className="NavbarButton" onClick={handleHome}>
             Home
           </button>
@@ -74,9 +71,6 @@ export default function Navbarr(props) {
         <div className="NavbarButtonDiv">
           <button className="NavbarButton" onClick={handleLogin}>
             Login
-          </button>
-          <button className="NavbarButton" onClick={handleRegister}>
-            Register
           </button>
         </div>
       )}

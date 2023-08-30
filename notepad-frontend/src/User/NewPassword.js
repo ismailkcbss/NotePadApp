@@ -40,7 +40,7 @@ export default function NewPassword() {
                 const { data } = await axiosInstance.post(`/Users/NewPassword/${id}`, {
                     NewPassword: form.NewPassword
                 })
-                history.push('/')
+                history.push('/NewPassDesc')
                 alertify.success("Parola değişim başarılı");
             } catch (error) {
                 alertify.error(error);

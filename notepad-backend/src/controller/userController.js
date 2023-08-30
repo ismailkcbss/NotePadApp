@@ -90,7 +90,7 @@ const LoginUser = async (req, res) => {
 
 const EditUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id,{...req.body},{new:true});
+    const user = await User.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
     res.status(201).json({
       succeded: true,
       user,
