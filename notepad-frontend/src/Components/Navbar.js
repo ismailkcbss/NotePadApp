@@ -9,7 +9,7 @@ export default function Navbarr(props) {
   const token = storage.getValueByKey("jwt");
 
   const { userData } = props;
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -69,6 +69,9 @@ export default function Navbarr(props) {
         </div>
       ) : (
         <div className="NavbarButtonDiv">
+          <button className="NavbarButton" onClick={handleSendMail}>
+            Contact
+          </button>
           <button className="NavbarButton" onClick={handleLogin}>
             Login
           </button>

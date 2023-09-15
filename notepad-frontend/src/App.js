@@ -10,7 +10,7 @@ import { axiosInstance } from './axios.util';
 import * as storage from './storage.helper'
 import { userActions } from './redux/slice/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import ProtectedRoute from './User/ProtectedRoute';
+import { ProtectedAdmin, ProtectedPageRoute,ProtectedReturnPage } from './User/ProtectedRoute';
 import Contact from './User/Contact';
 import NoteView from './Notes/NoteView';
 import NewPassword from './User/NewPassword';
@@ -21,6 +21,7 @@ import AdminPanel from './Components/AdminPanel';
 import RegisterDesc from './Components/RegisterDesc';
 import NewPassDesc from './Components/NewPassDesc';
 import CheckRegister from './Components/CheckRegister';
+import AdminDesc from './Components/AdminDesc';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
             try {
                 const { data } = await axiosInstance.get('/Users/UserMe');
                 setUserData(data.user)
-                dispatch(userActions.set(data.user))
+                dispatch(userActions.login(data))
             } catch (error) {
                 console.log(error);
             }
@@ -54,23 +55,26 @@ function App() {
         <BrowserRouter>
             <Navbar userData={userData} />
             <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/Login' component={Login} />
-                <Route exact path='/Register' component={Register} />
-                <Route exact path='/RegisterDesc' component={RegisterDesc} />
-                <Route exact path='/Contact' component={Contact} />
-                <Route exact path='/PasswordReset' component={PasswordReset} />
                 
-                {/*Token göndermek lazım her isteyen ulaşmamalı*/}
-                <Route exact path='/NewPassword' component={NewPassword} />  
-                <Route exact path='/NewPassDesc' component={NewPassDesc} />
-                <Route exact path='/CheckRegister' component={CheckRegister} />
+                <Route exact path='/' component={Home} />
+                <Route exact path='/Contact' component={Contact} />
 
-                <ProtectedRoute exact path='/EditUser/:id' component={EditUser} />
-                <ProtectedRoute exact path='/AdminPanel' component={AdminPanel} />
-                <ProtectedRoute exact path='/NoteView' component={NoteView} />
-                <ProtectedRoute exact path='/NoteView/:id' component={NoteView} />
-                <ProtectedRoute exact path='/Dashboard' component={Dashboard} />
+                <ProtectedReturnPage exact path='/PasswordReset' component={PasswordReset} />
+                <ProtectedReturnPage exact path='/AdminDesc' component={AdminDesc} />
+                <ProtectedReturnPage exact path='/RegisterDesc' component={RegisterDesc} />
+                <ProtectedReturnPage exact path='/Login' component={Login} />
+                <ProtectedReturnPage exact path='/Register' component={Register} />
+
+                <ProtectedPageRoute exact path='/NewPassword' component={NewPassword} />
+                <ProtectedPageRoute exact path='/NewPassDesc' component={NewPassDesc} />
+                <ProtectedPageRoute exact path='/CheckRegister' component={CheckRegister} />
+                <ProtectedPageRoute exact path='/EditUser/:id' component={EditUser} />
+                <ProtectedPageRoute exact path='/NoteView' component={NoteView} />
+                <ProtectedPageRoute exact path='/NoteView/:id' component={NoteView} />
+                <ProtectedPageRoute exact path='/Dashboard' component={Dashboard} />
+
+                <ProtectedAdmin exact path='/AdminPanel' component={AdminPanel} />
+
             </Switch>
         </BrowserRouter>
     )

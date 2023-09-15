@@ -648,7 +648,7 @@ ${req.body.Password}</strong></p></td>
   }
 };
 
-const PasswordResetSendMail = async (req, res, next) => {
+const PasswordResetSendMail = async (req, res) => {
   const htmlTemplate = `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -848,20 +848,18 @@ const PasswordResetSendMail = async (req, res, next) => {
     // send mail with defined transport object
     await transporter.sendMail({
       to: `${req.body.Email}`, // list of receivers
-      subject: `Mail From: ${NODE_MAIL}`, // Subject line
+      subject: `Mail From: ${process.env.NODE_MAIL}`, // Subject line
       html: htmlTemplate, // html body
       expires: 1000 * 60 * 60 * 2, // 2 saat ile sınırladık ama olmadı
     });
     res.status(201).json({
       succeded: true,
     });
-    next();
   } catch (error) {
     res.status(500).json({
       succeded: false,
       error,
     });
-    next();
     console.log("Error", error);
   }
 };

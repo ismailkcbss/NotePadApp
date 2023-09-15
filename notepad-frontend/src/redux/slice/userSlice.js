@@ -26,9 +26,10 @@ const userSlice = createSlice({
         logout:(state) => {
             state.user = {
                 id:"",
-                fullName:"",
-                email:"",
-                password:"",
+                FullName:"",
+                Email:"",
+                Password:"",
+                Phone:"",
             };
             state.isAuth = false;
             state.token = "";
