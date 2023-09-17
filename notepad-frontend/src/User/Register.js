@@ -46,7 +46,6 @@ export default function Register() {
     }
     const imageRef = ref(storage, uuidv4());
     try {
-      console.log(imageRef);
       await uploadBytes(imageRef, image);
       const result = await getDownloadURL(imageRef);
       const { data } = await axiosInstance.post(`/Users/Register`, {

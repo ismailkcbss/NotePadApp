@@ -121,24 +121,22 @@ export default function NoteView() {
             min={0}
           />
           <small style={{ float: "left", fontSize: ".8em", margin: "0 4em 2em 0" }}>{characterLimit - form.Description.length} Remaining</small>
+
         </div>
       </form>
       <div className='NoteViewButtonDiv'>
-        {
-          id ? (
-            <div>
-              <button className='NoteViewUpButton' onClick={handleSaveClick}>Update</button>
-              <button className='NoteViewDelButton' onClick={handleDeleteClick}>Delete</button>
-            </div>
-          ) : (
-            <button className='NoteViewNewSaveButton' onClick={handleSaveClick}>Save</button>
-          )
-        }
+          {
+            id ? (
+              <div style={{display:"flex",justifyContent:"space-between", width:"100%"}}>
+                <button className='NoteViewUpButton' onClick={handleSaveClick}>Update</button>
+                <button className='NoteViewDelButton' onClick={handleDeleteClick}>Delete</button>
+              </div>
+            ) : (
+              <button className='NoteViewNewSaveButton' onClick={handleSaveClick}>Save</button>
+            )
+          }
 
-      </div>
-
-
-
+        </div>
     </div>
   )
 }

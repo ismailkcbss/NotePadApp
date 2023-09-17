@@ -21,7 +21,6 @@ import AdminPanel from './Components/AdminPanel';
 import RegisterDesc from './Components/RegisterDesc';
 import NewPassDesc from './Components/NewPassDesc';
 import CheckRegister from './Components/CheckRegister';
-import AdminDesc from './Components/AdminDesc';
 
 
 function App() {
@@ -31,14 +30,11 @@ function App() {
 
     const dispatch = useDispatch();
 
-    const [userData, setUserData] = useState("")
-
     const getUserData = async () => {
         const token = storage.getValueByKey("jwt");
         if (token) {
             try {
                 const { data } = await axiosInstance.get('/Users/UserMe');
-                setUserData(data.user)
                 dispatch(userActions.login(data))
             } catch (error) {
                 console.log(error);
@@ -53,14 +49,13 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Navbar userData={userData} />
+            <Navbar/>
             <Switch>
                 
                 <Route exact path='/' component={Home} />
                 <Route exact path='/Contact' component={Contact} />
 
                 <ProtectedReturnPage exact path='/PasswordReset' component={PasswordReset} />
-                <ProtectedReturnPage exact path='/AdminDesc' component={AdminDesc} />
                 <ProtectedReturnPage exact path='/RegisterDesc' component={RegisterDesc} />
                 <ProtectedReturnPage exact path='/Login' component={Login} />
                 <ProtectedReturnPage exact path='/Register' component={Register} />

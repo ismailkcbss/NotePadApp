@@ -11,6 +11,7 @@ router.route('/PasswordReset').post(userController.PasswordResetSendMail);
 router.route('/NewPassword/:id').post(userController.PasswordReset);
 router.route('/GetAllUser').get(userController.GetAllUser);
 router.route('/EditUser/:id').post(userController.EditUser);
+router.route('/DeleteUser/:id').delete(userController.DeleteUser);
 router.route('/UserMe')
     .get(authMiddleware.AuthenticateToken, userController.UserMe);
 

@@ -62,29 +62,6 @@ export default function AdminPanel() {
     GetAllUser();
   }, [])
 
-  // const GetPanel = async () => {
-  //   if (id) {
-  //     try {
-  //       const { data } = await axiosInstance.get(`/Panel/Content/${id}`)
-  //       setForm({
-  //         TopTitle: data.panel.TopTitle,
-  //         TopDesc: data.panel.TopDesc,
-  //         MidTitle: data.panel.MidTitle,
-  //         MidDesc: data.panel.MidDesc,
-  //         BotTitle: data.panel.BotTitle,
-  //         BotDesc: data.panel.BotDesc,
-  //       })
-  //       alertify.success("Success");
-  //     } catch (error) {
-  //       alertify.error("Panel Bilgileri Getirilemedi")
-  //     }
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   GetPanel();
-  // }, [id])
-
   return (
     <div className="PanelDiv">
       <div>
@@ -144,7 +121,7 @@ export default function AdminPanel() {
 
       <div >
         <h4 style={{ margin: "2em 0 1em 2em",textAlign:"center" }}>All Users</h4>
-        <UsersDataTable allUsersData={allUsersData} />
+        <UsersDataTable allUsersData={allUsersData} setAllUsersData={setAllUsersData} />
       </div>
 
     </div>

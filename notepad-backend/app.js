@@ -27,7 +27,7 @@ app.use(cookieParser()); // Cookie ye çerezleri göndermek için ekliyoruz
 app.use(bodyParser.urlencoded({ extended: true })); // Eğerki bu durumu belirtmez isek put ve post isteği atamayız.
 app.use(cors({
     origin: ['http://localhost:3000'], //Hedef gösterme
-    methods: ['GET', 'POST','PUT','DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
 })) // Frontend den gelen istekleri backende iletmesini sağlayan paket
@@ -53,8 +53,8 @@ app.use(
 
 // Route
 app.use('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir
-app.use("/Notes", notesRoute);
 app.use("/Users", userRoute);
+app.use("/Notes", notesRoute);
 app.use("/Panel", panelRoute);
 
 app.listen(port, () => {

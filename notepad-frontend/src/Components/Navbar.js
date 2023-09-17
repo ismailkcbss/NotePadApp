@@ -5,10 +5,10 @@ import Cookie from "js-cookie"; // Frontend tarafından cookie işlemleri için 
 import { userActions } from "../redux/slice/userSlice";
 import { useDispatch } from "react-redux";
 
-export default function Navbarr(props) {
+export default function Navbarr() {
   const token = storage.getValueByKey("jwt");
+  const role = storage.getRoleUser("role");
 
-  const { userData } = props;
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,6 +39,7 @@ export default function Navbarr(props) {
   const handleClickLogout = () => {
     dispatch(userActions.logout());
     storage.setKeyWithValue("jwt", ""); // Logout tusuna basınca storage den cookie yi siler
+    storage.setRoleUser("role", "");
     RemoveCookie("jwt"); // Logout tuşuna basınca cookiyi siler.
     history.push("/");
   };
@@ -47,7 +48,7 @@ export default function Navbarr(props) {
     <div className="NavbarDiv">
       {token ? (
         <div className="NavbarButtonDiv">
-          {userData.Admin ? (
+          {role === "true" ? (
             <button className="NavbarButton" onClick={handlePanel}>
               Panel
             </button>

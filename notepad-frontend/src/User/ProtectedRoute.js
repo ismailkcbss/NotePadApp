@@ -37,13 +37,13 @@ const ProtectedReturnPage = ({ component: Component, ...rest }) => {
 }
 
 const ProtectedAdmin = ({ component: Component, ...rest }) => {
-    const user =  useSelector((state) => state.user)
+    const role = storage.getValueByKey("role");
     return (
         <Route {...rest}
-            render={(props) => user.user.Admin ? (
+            render={(props) => role === "true" ? (
                 <Component />
             ) : (
-                <Redirect to="/AdminDesc" />
+                <Redirect to="/" />
             )
             }
         />

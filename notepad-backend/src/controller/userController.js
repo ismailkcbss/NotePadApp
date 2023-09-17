@@ -870,6 +870,7 @@ export {
   LoginUser,
   EditUser,
   GetAllUser,
+  DeleteUser,
   UserMe,
   PasswordReset,
   SendMail,

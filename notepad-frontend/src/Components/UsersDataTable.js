@@ -8,16 +8,25 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import alertify from 'alertifyjs';
+import { axiosInstance } from '../axios.util';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function UsersDataTable(props) {
-
 
   const { allUsersData } = props;
   let count = 1;
 
-
-  const handleClick = () => {
-
+  const deleteUser = async (_id) => {
+    if (_id) {
+      try {
+        const { data } = await axiosInstance.delete(`/Users/DeleteUser/${_id}`);
+        window.location.reload()
+        alertify.success("User Silme Başarılı")
+      } catch (error) {
+        alertify.error("Veri silinemedi")
+      }
+    }
   }
 
   return (
@@ -40,7 +49,7 @@ export default function UsersDataTable(props) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <Button  onClick={handleClick}><DeleteIcon sx={{ color: "rgba(177, 20, 20, 0.815)" }} /></Button>
+                <Button onClick={() => deleteUser(user?._id)}><DeleteIcon sx={{ color: "rgba(177, 20, 20, 0.815)" }} /></Button>
               </TableCell>
               <TableCell align="left">
                 {count++}

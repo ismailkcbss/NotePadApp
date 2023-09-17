@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { axiosInstance, setApiToken } from '../axios.util';
 import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
@@ -26,10 +26,10 @@ export default function Login() {
             [key]: value,
         })
     }
-    
+
     const handleClickReturn = () => {
         history.push('/')
-      }
+    }
     const handleRegisterClick = () => {
         history.push('/Register');
     }
@@ -49,6 +49,7 @@ export default function Login() {
                 Password: form.Password,
             })
             storage.setKeyWithValue("jwt", data.token);
+            storage.setRoleUser("role", data.user.Admin);
             setApiToken(data.token);
             dispatch(userActions.login(data))
             history.push('/');
@@ -60,36 +61,34 @@ export default function Login() {
     }
 
     return (
-        <div className='Container'>
-            <div className='LoginDiv'>
-                <div className='FormDivHeader'>
-                    <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Please Enter Your Information</h3>
-                </div>
-                <form className='form'>
-                    <div className='loginForm'>
-                        <input
-                            type='email'
-                            placeholder='Email Address'
-                            value={form.Email}
-                            onChange={(e) => handleTextChange(e.target.value, "Email")}
-                            className='LoginInput'
-                        />
-                        <input
-                            type='password'
-                            placeholder='Password'
-                            value={form.Password}
-                            onChange={(e) => handleTextChange(e.target.value, "Password")}
-                            className='LoginInput'
-                        />
-                        <button className='LoginButton' onClick={AuthenticationLogin}>Login</button>
-
-                        <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column" }}>
-                            <span>To Register <button className='LoginRegForButton' onClick={handleRegisterClick}>Click Here</button></span>
-                            <span>Forgot Your Password <button className='LoginRegForButton' onClick={handlePasswordClick}>Click Here</button></span>
-                        </div>
-                    </div>
-                </form>
+        <div className='LoginDiv'>
+            <div className='FormDivHeader'>
+                <button onClick={handleClickReturn}><ChevronLeftIcon sx={{ fontSize: '2em' }} /></button> <h3>Please Enter Your Information</h3>
             </div>
+            <form>
+                <div className='loginForm'>
+                    <input
+                        type='email'
+                        placeholder='Email Address'
+                        value={form.Email}
+                        onChange={(e) => handleTextChange(e.target.value, "Email")}
+                        className='LoginInput'
+                    />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        value={form.Password}
+                        onChange={(e) => handleTextChange(e.target.value, "Password")}
+                        className='LoginInput'
+                    />
+                    <button className='LoginButton' onClick={AuthenticationLogin}>Login</button>
+
+                    <div style={{ display: "flex", alignItems: "flex-start", flexDirection: "column" }}>
+                        <span>To Register <button className='LoginRegForButton' onClick={handleRegisterClick}>Click Here</button></span>
+                        <span>Forgot Your Password <button className='LoginRegForButton' onClick={handlePasswordClick}>Click Here</button></span>
+                    </div>
+                </div>
+            </form>
         </div>
 
     )

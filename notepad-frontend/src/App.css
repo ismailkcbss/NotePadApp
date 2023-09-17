@@ -21,11 +21,7 @@ input::-webkit-inner-spin-button {
 }
 
 /*USER CLASS CSS*/
-.Container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-}
+
 
 form {
     width: 35em;
@@ -39,12 +35,11 @@ form {
 .NoteViewDiv,
 .EditUserDiv {
     width: 100%;
-    height: 100vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 }
 
 .PasswordResetDiv {
@@ -54,7 +49,6 @@ form {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-image: url(https://tailwindui.com/img/beams-cover@95.jpg) !important;
 }
 
 .RegisterForm,
@@ -71,6 +65,9 @@ form {
     align-items: center;
     justify-content: center;
     padding: .5em 1em .5em 1em;
+    border-top: none;
+    border-radius: .4em;
+    box-shadow: .1em .1em 1em .1em rgba(0, 0, 0, 0.329) ;
 }
 
 
@@ -90,7 +87,8 @@ form {
     border: none;
     padding: 1em;
     border-radius: .5em;
-    background-color: rgba(240, 240, 240, 0.712);
+    box-shadow: .1em .1em 1em .1em rgba(182, 182, 182, 0.329) ;
+
 }
 
 .NoteViewForm textarea,
@@ -98,10 +96,10 @@ form {
     margin-bottom: 1em;
     border: none;
     resize: none;
-    background-color: rgba(240, 240, 240, 0.712);
     font-size: 1.1rem;
     border-radius: .5em;
     padding: .2em;
+    box-shadow: .1em .1em 1em .1em rgba(182, 182, 182, 0.329) ;
 }
 
 .NoteViewForm textarea:focus,
@@ -145,6 +143,7 @@ form {
     width: 35em;
     display: flex;
     justify-content: space-around;
+    margin-top: 1em;
 }
 
 .NoteViewUpButton {
