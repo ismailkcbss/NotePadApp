@@ -60,7 +60,6 @@ export default function Register() {
     } catch (error) {
       alertify.error("Hatalı giris");
     }
-
     setForm({ ...initialForm })
   }
 

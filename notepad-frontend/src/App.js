@@ -5,7 +5,7 @@ import Login from './User/Login'
 import Register from './User/Register'
 import EditUser from './User/EditUser'
 import Dashboard from './User/Dashboard';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { axiosInstance } from './axios.util';
 import * as storage from './storage.helper'
 import { userActions } from './redux/slice/userSlice';

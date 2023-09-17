@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { axiosInstance } from "../axios.util";
 import alertify from "alertifyjs";
-import { useParams } from 'react-router-dom'
 import { useEffect } from "react";
 import UsersDataTable from "./UsersDataTable";
 

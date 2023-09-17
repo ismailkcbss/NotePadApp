@@ -10,18 +10,20 @@ import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import alertify from 'alertifyjs';
 import { axiosInstance } from '../axios.util';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function UsersDataTable(props) {
 
-  const { allUsersData } = props;
+  const { allUsersData, setAllUsersData } = props;
   let count = 1;
 
   const deleteUser = async (_id) => {
     if (_id) {
       try {
         const { data } = await axiosInstance.delete(`/Users/DeleteUser/${_id}`);
-        window.location.reload()
+        setAllUsersData((prev) =>{
+          const newPrew = prev.filter((each)=> each._id !== _id);
+          return newPrew;
+        })
         alertify.success("User Silme Başarılı")
       } catch (error) {
         alertify.error("Veri silinemedi")
@@ -48,9 +50,16 @@ export default function UsersDataTable(props) {
               key={user._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                <Button onClick={() => deleteUser(user?._id)}><DeleteIcon sx={{ color: "rgba(177, 20, 20, 0.815)" }} /></Button>
-              </TableCell>
+              {
+                user.Admin ? (
+                  <Button><DeleteIcon sx={{ '&:nth-child(1)': { display: "none" }, color: "rgba(177, 20, 20, 0.815)" }} /></Button>
+                ) : (
+                  <TableCell component="th" scope="row">
+                    <Button onClick={() => deleteUser(user?._id)}><DeleteIcon sx={{ color: "rgba(177, 20, 20, 0.815)" }} /></Button>
+                  </TableCell>
+                )
+              }
+
               <TableCell align="left">
                 {count++}
               </TableCell>
