@@ -284,7 +284,16 @@ form {
     justify-content: space-between;
     align-items: center;
 }
-
+.NoteDivSearch{
+    width: 25em;
+    height: 2.5em;
+    line-height: 2.5em;
+    padding: 1em;
+    outline: none;
+    border: none;
+    border-radius: .4em;
+    box-shadow: .1em .1em .1em .1em rgba(104, 104, 104, 0.616);
+}
 .AddNewNoteButton {
     width: 13em;
     height: 2.5em;

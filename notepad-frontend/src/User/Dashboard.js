@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import UserInfo from '../Components/UserInfo';
 import NotePaper from '../Notes/NotePaper';
 import { axiosInstance } from '../axios.util';
@@ -20,7 +20,7 @@ export default function Dashboard() {
   const [note, setNote] = useState([])
   const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
-
+  const [search, setSearch] = useState("")
 
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -30,6 +30,26 @@ export default function Dashboard() {
   }
 
 
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 500);
+    }
+  }
+
+  const searchTextChange = async (event,key) => {
+    key = event.target.value;
+    console.log(key);
+    const { data } = await axiosInstance.get(`/Notes/Search?key=${key}`);
+    setNote(data.notes);
+  }
+
+  const optimisedVersiyon = useCallback(debounce(searchTextChange),[])
 
   const getUser = async () => {
     try {
@@ -77,6 +97,14 @@ export default function Dashboard() {
                       <Pagination count={count > 0 ? (Math.ceil(count / 12)) : (1)} page={page} onChange={handlePageChange} />
                     </Stack>
                   </div>
+                  <input
+                    type="text"
+                    autoComplete="off"
+                    name="search"
+                    placeholder="Search..."
+                    onChange={optimisedVersiyon}
+                    className='NoteDivSearch'
+                  />
                   <button className='AddNewNoteButton' onClick={handleAddNoteClick}>Add New Note</button>
                 </div>
                 <hr />
@@ -109,3 +137,4 @@ export default function Dashboard() {
 
   )
 }
+
