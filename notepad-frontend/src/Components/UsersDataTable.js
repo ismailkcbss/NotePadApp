@@ -52,7 +52,7 @@ export default function UsersDataTable(props) {
             >
               {
                 user.Admin ? (
-                  <Button><DeleteIcon sx={{ '&:nth-child(1)': { display: "none" }, color: "rgba(177, 20, 20, 0.815)" }} /></Button>
+                  <Button><DeleteIcon sx={{ '&: nth-of-type(1)': { display: "none" }, color: "rgba(177, 20, 20, 0.815)" }} /></Button>
                 ) : (
                   <TableCell component="th" scope="row">
                     <Button onClick={() => deleteUser(user?._id)}><DeleteIcon sx={{ color: "rgba(177, 20, 20, 0.815)" }} /></Button>

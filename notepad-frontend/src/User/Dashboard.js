@@ -29,6 +29,17 @@ export default function Dashboard() {
     history.push('/NoteView')
   }
 
+  const getUser = async () => {
+    try {
+      const { data } = await axiosInstance.get('/Users/UserMe')
+      setUserData(data.user)
+      setIsLoading(true)
+      dispatch(userActions.set(data.user))
+    } catch (error) {
+      alert(error)
+    }
+  }
+
 
   const debounce = (func) => {
     let timer;
@@ -42,29 +53,16 @@ export default function Dashboard() {
     }
   }
 
-  const searchTextChange = async (event,key) => {
+  const searchTextChange = async (event, key) => {
     key = event.target.value;
-    console.log(key);
-    const { data } = await axiosInstance.get(`/Notes/Search?key=${key}`);
-    setNote(data.notes);
+    setSearch(key)
   }
 
-  const optimisedVersiyon = useCallback(debounce(searchTextChange),[])
-
-  const getUser = async () => {
-    try {
-      const { data } = await axiosInstance.get('/Users/UserMe')
-      setUserData(data.user)
-      setIsLoading(true);
-      dispatch(userActions.set(data.user))
-    } catch (error) {
-      alert(error)
-    }
-  }
+  const optimisedVersiyon = useCallback(debounce(searchTextChange), [])
 
   const getAllNotes = async () => {
     try {
-      const { data } = await axiosInstance.get(`/Notes/Note?limit=12&offset=${(page - 1) * 12}`)
+      const { data } = await axiosInstance.get(`/Notes/Note?limit=12&offset=${(page - 1) * 12}&search=${search}`)
       setNote(data.notes)
       setCount(data.count)
     } catch (error) {
@@ -74,7 +72,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     getAllNotes();
-  }, [page])
+  }, [page,search])
 
   useEffect(() => {
     getUser();

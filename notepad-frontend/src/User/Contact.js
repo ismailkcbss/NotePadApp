@@ -68,7 +68,6 @@ export default function Contact() {
                         value={form.Email}
                         onChange={(e) => handleTextChange(e.target.value, "Email")}
                         required
-                        autoComplete
                         className='ContactInput'
                     />
                     <textarea

@@ -3,7 +3,7 @@ import * as storage from "../storage.helper";
 import { useHistory } from "react-router-dom";
 import Cookie from "js-cookie"; // Frontend tarafından cookie işlemleri için kullandığımız paket
 import { userActions } from "../redux/slice/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbarr() {
   const token = storage.getValueByKey("jwt");
@@ -48,7 +48,7 @@ export default function Navbarr() {
     <div className="NavbarDiv">
       {token ? (
         <div className="NavbarButtonDiv">
-          {role === "true" ? (
+          {role ? (
             <button className="NavbarButton" onClick={handlePanel}>
               Panel
             </button>

@@ -27,10 +27,21 @@ const CreateNotes = async (req, res) => {
 //skip  = verilen sayı kadar atlayıp gösterme
 //limit = her page de gösterilecek sayı miktarı
 const GetAllNotes = async (req, res) => {
-    let { limit, offset, key } = req.query;
+    let { limit, offset, search } = req.query;
     try {
-        const notes = await Notes.find({ user: res.locals.user._id }).skip(offset).limit(limit).sort({ "updatedAt": -1 })
-        const count = await Notes.find({ user: res.locals.user._id }).count();
+        const notes = await Notes.find({
+            $and: [
+                { user: res.locals.user._id },
+                { "Title": new RegExp(search, 'i') }
+            ]
+        }).skip(offset).limit(limit).sort({ "updatedAt": -1 })
+
+        const count = await Notes.find({ // (?) Bu sorguyu teke düşürmek gerekiyor bu şekilde doğru değil
+            $and: [
+                { user: res.locals.user._id },
+                { "Title": new RegExp(search, 'i') }
+            ]
+        }).count();
         res.status(200).json({
             succeded: true,
             notes,
@@ -44,46 +55,7 @@ const GetAllNotes = async (req, res) => {
         console.log(error);
     }
 }
-const GetFilterNotes = async (req, res) => {
-    try {
-        let key = req.query.key;
-        const notes = await Notes.aggregate([{
-            $match: {
-                $and: [
-                    { user: res.locals.user._id },
-                    { "Title": new RegExp(key, 'i') }
-                ]
-            }
-        }])
-        res.status(201).json({
-            succeded: true,
-            count: notes.length,
-            notes
-        })
-    } catch (error) {
-        res.status(500).json({
-            succeded: false,
-            error
-        })
-        console.log(error);
-    }
-    /*
-    , async function(err, not){
-                if(err){
-                    res.status(500).json({
-                        succeded: false,
-                        err
-                    })
-                }
-                notes = await Notes.aggregate([{ $match: { Description: new RegExp(key, 'i') } }])
-                res.status(201).json({
-                    succeded: true,
-                    length: notes.length,
-                    not,
-                })
-            }
-    */
-}
+
 const GetSingleNote = async (req, res) => {
     try {
         const note = await Notes.findById(req.params.id);
@@ -133,4 +105,4 @@ const UpdateNotes = async (req, res) => {
     }
 }
 
-export { CreateNotes, GetAllNotes, DeleteNotes, UpdateNotes, GetSingleNote, GetFilterNotes }
+export { CreateNotes, GetAllNotes, DeleteNotes, UpdateNotes, GetSingleNote }

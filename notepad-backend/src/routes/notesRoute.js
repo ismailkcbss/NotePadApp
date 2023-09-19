@@ -6,9 +6,8 @@ const router = express.Router();
 router.route("/Note")
     .post(notesController.CreateNotes)
     .get(notesController.GetAllNotes)
-    .get(notesController.GetFilterNotes)
 
-router.route("/Search").get(notesController.GetFilterNotes)
+// router.route("/Search").get(notesController.GetFilterNotes)
 
 router.route("/Note/:id")
     .get(notesController.GetSingleNote)
