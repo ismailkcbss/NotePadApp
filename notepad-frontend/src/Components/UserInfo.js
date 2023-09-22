@@ -36,7 +36,7 @@ export default function UserInfo(props) {
                     <TabContext value={value} sx={{ color: 'red' }}>
                         <Box sx={{ borderBottom: 1, borderColor: 'gray' }}>
                             <TabList onChange={handleChange}>
-                                <Tab label="Profil" value="1" />
+                                <Tab label="Profile" value="1" />
                                 <Tab label="Weather Estimate" value="2" />
                             </TabList>
                         </Box>

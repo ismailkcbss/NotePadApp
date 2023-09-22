@@ -1,3 +1,4 @@
+import { CreateUserRoleToken } from '../controller/userController.js';
 import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 
@@ -21,6 +22,7 @@ const CheckUser = async (req, res, next) => {// Bu fonksiyonda get isteği geldi
         next();
     }
 };
+
 
 
 const AuthenticateToken = async (req, res, next) => { // Bu fonksiyon kullanıcı kısıtlaması için token kotnrol etme ve eğerki yoksa giriş yapması için yönlendirme yapıyoruz.

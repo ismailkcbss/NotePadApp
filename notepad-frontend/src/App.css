@@ -335,8 +335,8 @@ form {
 .ImageDiv img {
     width: 15em;
     height: 15em;
-    object-fit: contain;
     border-radius: 50%;
+    object-fit: cover;
     box-shadow: .1em .1em .1em .1em rgba(68, 67, 67, 0.37);
 }
 

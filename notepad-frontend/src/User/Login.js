@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { axiosInstance, setApiToken } from '../axios.util';
 import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userActions } from '../redux/slice/userSlice';
 import alertify from 'alertifyjs';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 export default function Login() {
-
+    
     const initialForm = {
         Email: "",
         Password: "",
@@ -49,7 +49,6 @@ export default function Login() {
                 Password: form.Password,
             })
             storage.setKeyWithValue("jwt", data.token);
-            storage.setRoleUser("role", data.user.Admin);
             setApiToken(data.token);
             dispatch(userActions.login(data))
             history.push('/');

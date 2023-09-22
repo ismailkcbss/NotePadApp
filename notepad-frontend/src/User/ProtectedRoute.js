@@ -1,20 +1,14 @@
 import { Route, Redirect } from 'react-router-dom';
 import * as storage from '../storage.helper';
-import Cookie from 'js-cookie';
 import { useSelector } from 'react-redux';
+import jwtDecode from 'jwt-decode';
+
 
 const ProtectedPageRoute = ({ component: Component, ...rest }) => {
-
-    const GetCookie = (pres) => {
-        return Cookie.get(pres);
-    };
-
-    const cookie = GetCookie('pres')
     const token = storage.getValueByKey("jwt");
-
     return (
         <Route {...rest}
-            render={(props) => (token || cookie) ? (
+            render={(props) => token ? (
                 <Component />
             ) : (
                 <Redirect to="/Login" />
@@ -25,6 +19,7 @@ const ProtectedPageRoute = ({ component: Component, ...rest }) => {
 
 const ProtectedReturnPage = ({ component: Component, ...rest }) => {
     const user = useSelector((state) => state.user)
+    //cookie den çek
     return (
         <Route {...rest}
             render={(props) => user.isAuth ? (
@@ -37,10 +32,12 @@ const ProtectedReturnPage = ({ component: Component, ...rest }) => {
 }
 
 const ProtectedAdmin = ({ component: Component, ...rest }) => {
-    const role = storage.getValueByKey("role");
+    const admin = storage.GetCookie("role")
+    const data = jwtDecode(admin);
+    var role = data.role;
     return (
         <Route {...rest}
-            render={(props) => role === "true" ? (
+            render={(props) => role ? (
                 <Component />
             ) : (
                 <Redirect to="/" />

@@ -64,6 +64,13 @@ const LoginUser = async (req, res) => {
         // ilk değişken cookie de tutulacak isim, ikincisi tutulacak veri, üçüncü durumda hem  hem de milisaniye cinsinden cookie süresi belirleniyor.
         httpOnly: false, // Bu sayade http isteklerinde müdahale edebiliyoruz
         maxAge: 1000 * 60 * 60 * 24, // Milisaniye cinsinden cookie süresini belirlemek için kullanılır bizde 1 güne eşitledik
+        expires: 1
+      });
+      const role = CreateUserRoleToken(user.Admin); // userRole için token oluşturduk
+      res.cookie("role", role, {
+        httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24,
+        expires: 1
       });
       res.status(201).json({
         // Başarılı giriş olursa json olarak bilgilerini dönüyorum.
@@ -205,6 +212,11 @@ const CreateUserToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, {
     // ilk veri kullanıcıya hangi verisine göre token verileceği, ikinci veri ise jwt yi gönderen kişinin kimliğini doğrulamak ve güvenliği sağlamak için
     expiresIn: "1d", // 1 gün geçerlilik süresi ardından token süresi dolar
+  });
+};
+const CreateUserRoleToken = (role) => {
+  return jwt.sign({ role }, process.env.JWT_SECRET, {
+    expiresIn: "1d",
   });
 };
 
@@ -876,4 +888,5 @@ export {
   SendMail,
   RegisterSendMail,
   PasswordResetSendMail,
+  CreateUserRoleToken
 }; // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.
