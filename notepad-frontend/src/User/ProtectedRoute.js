@@ -19,7 +19,7 @@ const ProtectedPageRoute = ({ component: Component, ...rest }) => {
 
 const ProtectedReturnPage = ({ component: Component, ...rest }) => {
     const user = useSelector((state) => state.user)
-    //cookie den çek
+    //cookie den çekilecek
     return (
         <Route {...rest}
             render={(props) => user.isAuth ? (

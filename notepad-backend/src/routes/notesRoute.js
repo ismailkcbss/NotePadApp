@@ -7,7 +7,6 @@ router.route("/Note")
     .post(notesController.CreateNotes)
     .get(notesController.GetAllNotes)
 
-// router.route("/Search").get(notesController.GetFilterNotes)
 
 router.route("/Note/:id")
     .get(notesController.GetSingleNote)

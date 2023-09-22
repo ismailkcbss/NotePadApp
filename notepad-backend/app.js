@@ -30,7 +30,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
-})) // Frontend den gelen istekleri backende iletmesini sağlayan paket
+})) // Frontend den gelen istekleri backende iletmesini sağlanması
 
 app.use(
     session({

@@ -17,7 +17,7 @@ export default function Navbarr() {
   //Cookie role kontrol
   const user = useSelector((state) => state.user)
   if (user.isAuth) {
-    var data = null; //null atamak doğru mu 
+    var data = null; //(?) 
     const GetCookie = (role) => {
       return Cookie.get(role);
     }

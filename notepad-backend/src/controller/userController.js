@@ -159,7 +159,7 @@ const UserMe = async (req, res, next) => {
       }
     });
   } else {
-    // Yularıda en basşında token yok ise cevap olarak null atayıp yolluyoruz
+    // Token yok ise cevap olarak null atayıp yolluyoruz
     res.locals.user = null;
     next();
   }
@@ -399,16 +399,15 @@ const SendMail = async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        // TODO: replace `user` and `pass` values from <https://forwardemail.net>
         user: process.env.NODE_MAIL,
         pass: process.env.NODE_PASS,
       },
     });
-    // send mail with defined transport object
+
     const info = await transporter.sendMail({
-      to: process.env.NODE_MAIL, // list of receivers
-      subject: `Mail From: ${req.body.Email}`, // Subject line
-      html: htmlTemplate, // html body
+      to: process.env.NODE_MAIL, 
+      subject: `Mail From: ${req.body.Email}`, 
+      html: htmlTemplate,
     });
     res.status(201).json({
       succeded: true,
@@ -635,16 +634,16 @@ ${req.body.Password}</strong></p></td>
         pass: process.env.NODE_PASS,
       },
     });
-    // send mail with defined transport object
+
     await transporter.sendMail({
-      to: `${req.body.Email}`, // list of receivers
-      subject: process.env.NODE_MAIL, // Subject line
-      html: htmlTemplate, // html body
+      to: `${req.body.Email}`, 
+      subject: process.env.NODE_MAIL,
+      html: htmlTemplate, 
     });
     res.status(201).json({
       succeded: true,
     })
-    //res.end();
+
   } catch (error) {
     res.status(500).json({
       succeded: false,
@@ -839,7 +838,7 @@ const PasswordResetSendMail = async (req, res) => {
       port: 465,
       secure: true,
       auth: {
-        // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+
         user: process.env.NODE_MAIL,
         pass: process.env.NODE_PASS,
       },
@@ -850,12 +849,10 @@ const PasswordResetSendMail = async (req, res) => {
       httpOnly: false,
       maxAge: 1000 * 60 * 60 * 2,
     });
-    // send mail with defined transport object
     await transporter.sendMail({
-      to: `${req.body.Email}`, // list of receivers
-      subject: `Mail From: ${process.env.NODE_MAIL}`, // Subject line
+      to: `${req.body.Email}`, 
+      subject: `Mail From: ${process.env.NODE_MAIL}`, 
       html: htmlTemplate, // html body
-      expires: 1000 * 60 * 60 * 2, // 2 saat ile sınırladık ama olmadı
     });
     res.status(201).json({
       succeded: true,

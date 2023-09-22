@@ -13,7 +13,7 @@ export default function AdminPanel() {
     BotTitle: "",
     BotDesc: "",
   };
-  // const { id } = useParams();
+
 
   const [form, setForm] = useState({ ...initialForm });
   const [allUsersData, setAllUsersData] = useState([]);

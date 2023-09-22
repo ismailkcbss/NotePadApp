@@ -17,7 +17,6 @@ export default function PasswordReset() {
       [key]: value
     });
   }
-  alertify.set('notifier', 'delay', 4); // alert mesajı süresi
   const handleClickSend = async (event) => {
     event.preventDefault();
     if (form.Email.trim() === "") {

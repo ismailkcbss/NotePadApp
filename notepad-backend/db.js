@@ -5,8 +5,8 @@ const conn = () => {
     try {
         mongoose.connect(process.env.DB_URL,{
             dbName:'NotePadApp', // Database ismi
-            useNewUrlParser:true, // Hata almamak için yapılıyor sebebini bilmiyorum
-            useUnifiedTopology:true // Hata almamak için yapılıyor sebebini bilmiyorum
+            useNewUrlParser:true, // Hata vermemesi için
+            useUnifiedTopology:true // Hata vermemesi için
         })
         console.log("DB Connected Successfully");
     } catch (error) {
