@@ -10,9 +10,8 @@ const CreatePanel = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"The panel could not be created",
     });
-    console.log("Panel", error);
   }
 };
 
@@ -26,9 +25,8 @@ const GetPagePanel = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"The panel could not be brought",
     });
-    console.log("Panel", error);
   }
 };
 
@@ -42,9 +40,8 @@ const GetPanel = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"The panel could not be brought",
     });
-    console.log("Panel", error);
   }
 };
 
@@ -58,7 +55,7 @@ const UpdatePanel = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"The panel data has not been updated",
     })
   }
 }

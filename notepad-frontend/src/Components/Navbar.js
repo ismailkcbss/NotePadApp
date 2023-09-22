@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import * as storage from "../storage.helper";
 import { useHistory } from "react-router-dom";
 import Cookie from "js-cookie"; // Frontend tarafından cookie işlemleri için kullandığımız paket

@@ -8,29 +8,30 @@ const userSchema = new Schema(
   {
     FullName: {
       type: String,
-      required: [true, "Fullname Girmediniz."], // Buraya sadece true yazmak yeterli (Bu alanın zorunlu olduğunu belirtiyoruz) fakat burda hata mesajı yazdırmak için bu şekilde yazmak daha doğru.
+      required: [true, "You did not Enter a Full Name."], // Buraya sadece true yazmak yeterli (Bu alanın zorunlu olduğunu belirtiyoruz) fakat burda hata mesajı yazdırmak için bu şekilde yazmak daha doğru.
       lowercase: true, // Kullanıcı ne girerse girsin küçük harfe döndürür
       //validate: [validator.isAscii, "Sadece sayı ve harf girmelisiniz."],
     },
     Email: {
       type: String,
-      required: [true, "Email Adresi Girmediniz"],
+      required: [true, "You Did Not Enter an Email Address"],
       unique: true, // Sadece bir kere alınabilirliği belirtiyoruz bu sayede başka bir hesapda bu email kullanılmaycak.
-      validate: [validator.isEmail, "Email formatında giriş yapmadınız"],
+      validate: [validator.isEmail, "You have not logged in to the email format"],
     },
     Password: {
       type: String,
-      required: [true, "Parola girişi yapmadınız"],
-      minLength: [4, "En az 4 karakterli bir şifre oluşturun."],
+      required: [true, "You have not entered a password"],
+      minLength: [4, "Create a password with at least 4 characters."],
     },
     Phone: {
       type: Number,
-      required: [true, "Telefon Numaranızı girmediniz"],
-      maxLength: [11, "Telefon numarası girerken fazla tuşlama yaptınız"],
+      required: [true, "You did not enter your Phone Number"],
+      minLength:[11,"Missing phone information"],
+      maxLength: [11, "You made too much dialing when entering the phone number"],
     },
     Image: {
       type: String,
-      required: [true, "Fotoğraf yüklemediniz"],
+      required: [true, "You have not uploaded a photo"],
     },
     Admin: {
       type: Boolean,

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { axiosInstance, setApiToken } from '../axios.util';
 import * as storage from '../storage.helper'
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { userActions } from '../redux/slice/userSlice';
 import alertify from 'alertifyjs';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';

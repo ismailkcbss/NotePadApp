@@ -17,9 +17,8 @@ const CreateNotes = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error:"The note could not be created"
         })
-        console.log(error);
     }
 }
 
@@ -50,9 +49,8 @@ const GetAllNotes = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error:"Notes could not be brought"
         })
-        console.log(error);
     }
 }
 
@@ -66,7 +64,7 @@ const GetSingleNote = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error:"The requested note could not be received"
         })
     }
 }
@@ -80,9 +78,8 @@ const DeleteNotes = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error:"The note could not be deleted"
         })
-        console.log("CATHE =", error);
     }
 }
 
@@ -100,7 +97,7 @@ const UpdateNotes = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error:"The note data could not be updated"
         })
     }
 }

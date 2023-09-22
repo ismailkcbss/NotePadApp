@@ -37,7 +37,7 @@ function App() {
                 const { data } = await axiosInstance.get('/Users/UserMe');
                 dispatch(userActions.login(data))
             } catch (error) {
-                console.log(error);
+                alertify.error(error.response.data.error);
             }
         }
     }

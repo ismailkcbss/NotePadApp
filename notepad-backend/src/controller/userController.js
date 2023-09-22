@@ -24,7 +24,7 @@ const CreateUser = async (req, res, next) => {
 
     if (error.code === 11000) {
       // DB den gelen hata kodu unique olmasını istediğimiz veriler için daha önceden kullanıldıysa
-      errors2.email = "Bu email ile daha önceden kayıt olunmuş";
+      errors2.email = "This email is registered";
     }
     if (error.name === "ValidationError") {
       // Yapılan hataları teker teker bulmak için bu koşulu yazıyoruz
@@ -34,8 +34,6 @@ const CreateUser = async (req, res, next) => {
       });
     }
     res.status(400).json(errors2); // Eğer girilen bilgilerde yanlışlık var ise hatayı ekrana json verisi şeklinde basıyoruz.
-    console.log(error);
-    next();
   }
 };
 
@@ -53,7 +51,7 @@ const LoginUser = async (req, res) => {
       return res.status(401).json({
         // Eğerki girilen emaile daha önce kayıtlı değilse json olarak cevap dönüyoruz.
         succeded: false,
-        error: "Girilen bilgilere ait kullanıcı bulunamadı",
+        error: "The user of the entered data could not be found",
       });
     }
 
@@ -82,16 +80,15 @@ const LoginUser = async (req, res) => {
       // Bu durumda check false gelmiştir ve kullanıcı parolasını yanlış yazmıştır bunun için bir json cevabı dönüyoruz.
       res.status(401).json({
         succeded: false,
-        error: "Girilen parola yanlış",
+        error: "The entered password is incorrect",
       });
     }
   } catch (error) {
     // Yukarıdaki durumlardan herhangi bir durum yanlış giderse cathce düşer ve json veri olarak hatayı ekrana basıyoruz.
     res.status(500).json({
       succeded: false,
-      error,
+      error:"Check your information",
     });
-    console.log(error);
   }
 };
 
@@ -105,7 +102,7 @@ const EditUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"Data could not be updated",
     });
   }
 };
@@ -119,7 +116,7 @@ const DeleteUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"The user could not be deleted",
     })
   }
 }
@@ -134,9 +131,8 @@ const GetAllUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"Users could not be found",
     });
-    console.log(error);
   }
 };
 
@@ -149,7 +145,7 @@ const UserMe = async (req, res, next) => {
         // Hata durumunda mesajı döner.
         res.status(401).json({
           succeded: false,
-          err,
+          err:"You are not authorized to access the page",
         }); // Error veriyorsa eğer böyle bir kullanıcı yok demektir ve bu durumda null atarız.
         next(); // Sonraki işleme geçmesini sağlar.
       } else {
@@ -169,7 +165,7 @@ const UserMe = async (req, res, next) => {
   }
 };
 
-const PasswordReset = async (req, res, next) => {
+const PasswordReset = async (req, res) => {
   try {
     const Email = req.params.id;
     if (Email) {
@@ -177,7 +173,7 @@ const PasswordReset = async (req, res, next) => {
         if (err) {
           res.status(401).json({
             succeded: false,
-            err,
+            err:"The user of the entered data could not be found",
           });
         } else {
           const user = await User.findOne({ Email: decodedToken.userId });
@@ -194,7 +190,7 @@ const PasswordReset = async (req, res, next) => {
     } else {
       res.status(500).json({
         succeded: false,
-        error: "Kullanıcı Bulunamadı",
+        error: "The user of the entered data could not be found",
       });
     }
   } catch (error) {
@@ -202,8 +198,6 @@ const PasswordReset = async (req, res, next) => {
       succeded: false,
       error,
     });
-    next();
-    console.log(error);
   }
 };
 
@@ -412,7 +406,7 @@ const SendMail = async (req, res) => {
     });
     // send mail with defined transport object
     const info = await transporter.sendMail({
-      to: "imfapkcss0132@gmail.com", // list of receivers
+      to: process.env.NODE_MAIL, // list of receivers
       subject: `Mail From: ${req.body.Email}`, // Subject line
       html: htmlTemplate, // html body
     });
@@ -654,9 +648,8 @@ ${req.body.Password}</strong></p></td>
   } catch (error) {
     res.status(500).json({
       succeded: false,
-      error,
+      error:"Mail could not be sent",
     });
-    console.log("Error", error);
   }
 };
 
@@ -872,7 +865,6 @@ const PasswordResetSendMail = async (req, res) => {
       succeded: false,
       error,
     });
-    console.log("Error", error);
   }
 };
 
@@ -889,4 +881,4 @@ export {
   RegisterSendMail,
   PasswordResetSendMail,
   CreateUserRoleToken
-}; // Bu şekilde export etme sebebimiz bu js dosyasında birden fazla fonksiyonu dışarı atayacağımız için.
+};

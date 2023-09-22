@@ -43,7 +43,7 @@ export default function NewPassword() {
                 history.push('/NewPassDesc')
                 alertify.success("Parola değişim başarılı");
             } catch (error) {
-                alertify.error(error);
+                alertify.error(error.response.data.error);
             }
         } else {
             alertify.error("Girilen Parolalar aynı değil")

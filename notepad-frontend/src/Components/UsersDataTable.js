@@ -24,9 +24,9 @@ export default function UsersDataTable(props) {
           const newPrew = prev.filter((each)=> each._id !== _id);
           return newPrew;
         })
-        alertify.success("User Silme Başarılı")
+        alertify.success("Success")
       } catch (error) {
-        alertify.error("Veri silinemedi")
+        alertify.error(error.response.data.error);
       }
     }
   }

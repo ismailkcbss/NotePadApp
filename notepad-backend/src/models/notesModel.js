@@ -6,11 +6,11 @@ const notesSchema = new Schema(
   {
     Title: {
       type: String,
-      required: [true, "Başlık Girmediniz."],
+      required: [true, "You did not Enter the Title."],
     },
     Description: {
       type: String,
-      required: [true, "Açıklama Girmediniz."],
+      required: [true, "You did not Enter an Explanation."],
     },
     uploadedAt: {
       type: Date,

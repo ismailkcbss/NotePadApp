@@ -58,7 +58,7 @@ export default function Register() {
       alertify.success("Registration Success");
       history.push('/RegisterDesc');
     } catch (error) {
-      alertify.error("Hatalı giris");
+      alertify.error(error.response.data.Email);
     }
     setForm({ ...initialForm })
   }

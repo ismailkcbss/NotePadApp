@@ -13,7 +13,7 @@ export default function Home() {
             setPanelData(data)
             setLoading(true);
         } catch (error) {
-            alertify.error("Panel Getirilmedi")
+            alertify.error(error.response.data.error);
         }
     }
 

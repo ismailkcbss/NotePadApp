@@ -60,8 +60,7 @@ export default function Register() {
       history.push("/Dashboard");
       alertify.success("Success");
     } catch (error) {
-      alertify.error(error);
-      console.log(error);
+      alertify.error(error.response.data.error);
     }
   };
   const UserMe = async () => {

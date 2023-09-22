@@ -43,13 +43,7 @@ app.use(
         },
     })
 )
-// app.get("/Dashboard",(req,res) => { // Cookie isteği için yaptık bu sayfaya her geldiğinde istek atıcak
-//     if(req.session.user){
-//         res.send({loggedIn:true, user: reg.session.user})
-//     }else{
-//         res.send({loggedIn:false,})
-//     }
-// })
+
 
 // Route
 app.use('*', CheckUser); //Herhangi bir sayfadan Get isteği atıldığı zaman checkuser fonksiyonuna gider ve orda token kontrol edilir

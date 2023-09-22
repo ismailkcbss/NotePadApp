@@ -34,13 +34,13 @@ export default function Contact() {
                 Email: form.Email,
                 Description: form.Description
             })
-            alertify.success("Başarılı")
+            alertify.success("Success")
             history.push('/Dashboard')
             setTimeout(() => {
                 setForm({ ...initialForm })
             }, 4000);
         } catch (error) {
-            alertify.error(error)
+            alertify.error(error.response.data.error);
         }
     }
     const handleClickReturn = () => {
@@ -69,6 +69,7 @@ export default function Contact() {
                         onChange={(e) => handleTextChange(e.target.value, "Email")}
                         required
                         className='ContactInput'
+                        
                     />
                     <textarea
                         rows={12}

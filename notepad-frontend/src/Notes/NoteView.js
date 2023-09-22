@@ -34,7 +34,7 @@ export default function NoteView() {
         })
         alertify.success("Success");
       } catch (error) {
-        alertify.error("Your Note  Not Found");
+        alertify.error(error.response.data.error);
       }
     }
   }
@@ -60,7 +60,7 @@ export default function NoteView() {
       history.push('/Dashboard')
       alertify.success("Note Added");
     } catch (error) {
-      alertify.error("Note Not  Added");
+      alertify.error(error.response.data.error);
     }
 
     setForm({ ...initialForm })

@@ -41,9 +41,9 @@ export default function AdminPanel() {
         BotTitle: form.BotTitle,
         BotDesc: form.BotDesc,
       })
-      alertify.success("Panel Kayıt Başarılı")
+      alertify.success("Success")
     } catch (error) {
-      alertify.error("Panel Eklenemedi")
+      alertify.error(error.response.data.error);
     }
     setForm({ ...initialForm });
   };
@@ -54,7 +54,7 @@ export default function AdminPanel() {
       setAllUsersData(data.user)
       alertify.success("All Users Have Been Received")
     } catch (error) {
-      alertify.error("Not Get All User")
+      alertify.error(error.response.data.error);
     }
   }
   useEffect(() => {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { usePosition } from 'use-position';
+import alertify from 'alertifyjs';
 
 export default function LocationWeather() {
 
@@ -17,7 +18,7 @@ export default function LocationWeather() {
             setWather(data);
             setCheck(true)
         } catch (error) {
-            alert("Veri alınırken hata oluştu");
+            alertify.error(error.response.data.error);
         }
     }
 

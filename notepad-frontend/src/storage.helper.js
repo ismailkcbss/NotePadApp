@@ -12,7 +12,6 @@ export const getValueByKey = (key) => {
 
 
 
-
 export const GetCookie = (key) => {
   return Cookie.get(key);
 }

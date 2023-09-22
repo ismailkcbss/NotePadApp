@@ -1,4 +1,3 @@
-import { CreateUserRoleToken } from '../controller/userController.js';
 import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 
@@ -8,7 +7,10 @@ const CheckUser = async (req, res, next) => {// Bu fonksiyonda get isteği geldi
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => { // Coocieden gelen token bizim üretmiş olduğumuz bir token olup olmadığını çözümlüyoruz eğerki evetse işlemlerine devam ediyor.
             if (err) {
-                console.log(err.message); // Hata durumunda mesajı consola basar.
+                res.status(401).json({
+                    succeeded:false,
+                    err:"You are not authorized to access the page"
+                })
                 res.locals.user = null; // Error veriyorsa eğer böyle bir kullanıcı yok demektir ve bu durumda null atarız.
                 next(); // Sonraki işleme geçmesini sağlar.
             } else {
@@ -33,7 +35,7 @@ const AuthenticateToken = async (req, res, next) => { // Bu fonksiyon kullanıc�
                 if (err) {
                     res.status(401).json({
                         succeeded: false,
-                        err
+                        err:"You are not authorized to access the page"
                     })
                     res.redirect('/'); // Login sayfasına yönlendirme
                 } else {
@@ -46,7 +48,7 @@ const AuthenticateToken = async (req, res, next) => { // Bu fonksiyon kullanıc�
     } catch (error) { // Catche ye düştüyse eğer yetkisi olmadığını yani token sahibi olmadığını anlıyoruz ve hata mesajı veriyoruz
         res.status(401).json({
             succeeded: false,
-            error: 'Sayfa erişimine yetkiniz yok',
+            error: 'You are not authorized to access the page',
         });
     }
 }

@@ -8,6 +8,8 @@ import { userActions } from '../redux/slice/userSlice';
 import { useHistory } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import alertify from "alertifyjs";
+
 
 export default function Dashboard() {
 
@@ -36,7 +38,7 @@ export default function Dashboard() {
       setIsLoading(true)
       dispatch(userActions.set(data.user))
     } catch (error) {
-      alert(error)
+      alertify.error(error.response.data.error);
     }
   }
 
@@ -66,7 +68,7 @@ export default function Dashboard() {
       setNote(data.notes)
       setCount(data.count)
     } catch (error) {
-      alert("Error Notes")
+      alertify.error(error.response.data.error);
     }
   }
 
