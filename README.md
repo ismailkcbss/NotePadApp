@@ -4,11 +4,7 @@
   <a href="https://nodejs.org/en/docs" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true" width="400" alt="Nest Logo" /></a>
   <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/reactpng.png?raw=true" width="300" alt="Nest Logo" /></a>
 </p>
-<p align="center">
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-</p>
+
 ## Project Description
 It is a personalized notebook application that can be used in daily life. The project includes features such as registration, login, adding notes, and searching for desired notes among notes.
 
