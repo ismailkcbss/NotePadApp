@@ -45,25 +45,40 @@ Open the 'backend' folder in the downloaded directory, and click on the folder p
 
 #### `npm install`
 
-İndirme işlemi bittikten sonra projemizi çalıştırmak için aynı komut istemcisinde aşağıdaki komutu yazın
+After the download is complete, to run our project, type the following command in the same command prompt
 
 #### `npm run start`
 
-bu komutu yazarak projeyi çalıştırabilirsiniz. Bazı durumlarda indirme işlemi bittikten sonra bazı paketlerin sürümünden dolayı hatalar verebilir. Böyle bir durum oluşursa aşağıda görseli verilen *package.json* daki paketlerin sürümüne göre manuel olarak indirme yapabilirsiniz.
-<br/>
+You can run the project by typing this command. In some cases, after the download is complete, you may encounter errors due to package versions. In such a situation, you can manually download according to the versions of the packages in the package.json file shown below.
 
 ![PackageJsonPNG](https://github.com/ismailkcbss/NotePad-Front/blob/main/packagejsonbackend.png?raw=true)
 
-İndirme işlemi için komut istemcisinde projenin ana dizini içerisindeyken yazmanız gereken komut örnek olarak;
-- ### dependencies paketleri için
+An example of the command you should type in the command prompt when you are inside the project's main directory for the download process is:
+
+- ### for dependencies packages
 #### `npm install react@18.0.2 --save --force`
 
-- ### devDependencies paketleri için
+- ### for devDependencies packages
 #### `npm install react@18.0.2 --save-dev --force`
 
-yazmanız paketi indirmenizde yardımcı olacaktır.
+writing this will assist you in downloading the package.
 
-## Daha fazla bilgi edin
+## Application images
+
+- Dashboard
+
+![resim1](https://github.com/ismailkcbss/NotePad-Front/blob/main/notepad1.png?raw=true)
+
+- contact form
+
+![resim2](https://github.com/ismailkcbss/NotePad-Front/blob/main/notepadcontact.png?raw=true)
+
+- Admin panel
+
+![resim3](https://github.com/ismailkcbss/NotePad-Front/blob/main/notpadadmin.png?raw=true)
+
+
+## Learn more
 
 You can learn more in the [Create React App documentation](https://create-react-app.dev/docs/getting-started/) <br/>
 To learn React, check out the [React documentation](https://react.dev/)<br/>
