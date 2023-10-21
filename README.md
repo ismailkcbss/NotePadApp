@@ -45,7 +45,7 @@ $ npm run start:prod
 
 You can run the project by typing this command. In some cases, after the download is complete, you may encounter errors due to package versions. In such a situation, you can manually download according to the versions of the packages in the *package.json* file shown below
 
-![PackageJsonPNG](https://github.com/ismailkcbss/NotePad-Front/blob/main/packagejson.png?raw=true)
+![PackageJsonPNG](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadFrontPackage.png?alt=media&token=835a9dd7-2304-40eb-8767-ad39079eb4b5&_gl=1*e5j97r*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4NDU4OC4yNS4xLjE2OTc4ODY4MzAuMjUuMC4w)
 
 An example of the command you should type in the command prompt when you are inside the project's main directory for the download process is;
 ```bash
@@ -75,7 +75,7 @@ $ npm run start:prod
 
 You can run the project by typing this command. In some cases, after the download is complete, you may encounter errors due to package versions. In such a situation, you can manually download according to the versions of the packages in the package.json file shown below.
 
-![PackageJsonPNG](https://github.com/ismailkcbss/NotePad-Front/blob/main/packagejsonbackend.png?raw=true)
+![PackageJsonPNG](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadBackendPackage.png?alt=media&token=e3a5f160-9323-4303-ab92-50ae3c3d5106&_gl=1*lowadp*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4NDU4OC4yNS4xLjE2OTc4ODY3OTUuNjAuMC4w)
 
 An example of the command you should type in the command prompt when you are inside the project's main directory for the download process is:
 
@@ -95,7 +95,7 @@ writing this will assist you in downloading the package.
 
 - Login Page
 
-  ![Login](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadLogin.png?alt=media&token=877c7470-03e0-4e12-8846-36e9831ee03e&_gl=1*1q2uxn3*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI3NzYuNDguMC4w)
+![Login](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadLogin.png?alt=media&token=877c7470-03e0-4e12-8846-36e9831ee03e&_gl=1*1q2uxn3*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI3NzYuNDguMC4w)
 
 - Dashboard Page
 
@@ -109,6 +109,9 @@ writing this will assist you in downloading the package.
 
 ![AdminPanel](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2Fnotpadadmin.png?alt=media&token=e40f3b29-0880-484a-adf1-22917a4a48d8&_gl=1*1o2u3e3*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI2MTMuMy4wLjA.)
 
+## Stay in touch
+- E-Mail [ismailcankocabas@gmail.com](ismailcankocabas@gmail.com)
+- LinkedIn [@ismailkcbss](https://www.linkedin.com/in/ismailkcbss/)
 
 ## Learn more
 
