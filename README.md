@@ -1,10 +1,7 @@
 # Notebook application
 
-  ![resim1](https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true)
-
-
 <p align="center">
-  <a href="https://nodejs.org/en/docs" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true" width="400" alt="Nest Logo" /></a>
+  <a href="https://nodejs.org/en/docs" target="blank"><img src="https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/6fb6a9a1-c973-48a4-aabe-91b7d60e7ca1?alt=media&token=2dd18b7e-3a6e-44c1-949d-aed2292d9f86&_gl=1*1r13xoh*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODEyNTMuMjkuMC4w" width="400" alt="Nest Logo" /></a>
   <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/reactpng.png?raw=true" width="300" alt="Nest Logo" /></a>
 </p>
 
