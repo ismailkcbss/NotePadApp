@@ -1,12 +1,12 @@
 # Notebook application
 
 <p align="center">
-  <a href="https://nodejs.org/en/docs" target="blank"><img src="https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/6fb6a9a1-c973-48a4-aabe-91b7d60e7ca1?alt=media&token=2dd18b7e-3a6e-44c1-949d-aed2292d9f86&_gl=1*1r13xoh*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODEyNTMuMjkuMC4w" width="400" alt="Nest Logo" /></a>
-  <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/reactpng.png?raw=true" width="300" alt="Nest Logo" /></a>
+  <a href="https://nodejs.org/en/docs" target="blank"><img src="https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FNodeJs.png?alt=media&token=a0457543-9e06-429a-9364-fddc0e5b65b0&_gl=1*shqfs2*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI0MDEuMjMuMC4w" width="400" alt="Nest Logo" /></a>
+  <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FReactJs.png?alt=media&token=214d305b-a1af-437b-8eb7-e5a90b98f253&_gl=1*y4l745*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODIzODAuNDQuMC4w" width="300" alt="Nest Logo" /></a>
 </p>
 
 ## Project Description
-It is a personalized notebook application that can be used in daily life. The project includes features such as registration, login, admin panel, adding notes, searching for the desired notes between notes.
+It is a personalized notebook application that can be used in daily life. The project includes features such as registration, login, admin panel, Dec Decryption, welcome mail, adding notes, searching for requested notes between notes.
 
 ## Project testing
 Launches the test runner in the interactive watch mode.
@@ -93,17 +93,21 @@ writing this will assist you in downloading the package.
 
 ## Application images
 
-- Dashboard
+- Login Page
 
-![resim1](https://github.com/ismailkcbss/NotePad-Front/blob/main/notepad1.png?raw=true)
+  ![Login](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadLogin.png?alt=media&token=877c7470-03e0-4e12-8846-36e9831ee03e&_gl=1*1q2uxn3*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI3NzYuNDguMC4w)
 
-- contact form
+- Dashboard Page
 
-![resim2](https://github.com/ismailkcbss/NotePad-Front/blob/main/notepadcontact.png?raw=true)
+![Dashboard](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2FnotepadDashboard.png?alt=media&token=aa9fa8f2-f67e-4c67-9380-462a1c9f699f&_gl=1*1ylk7l8*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI1NzAuNDYuMC4w)
+
+- Contact Form
+
+![Contact](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2Fnotepadcontact.png?alt=media&token=56fd3e8a-77ab-404e-b769-960acf582882&_gl=1*8v8xj4*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI1OTYuMjAuMC4w)
 
 - Admin panel
 
-![resim3](https://github.com/ismailkcbss/NotePad-Front/blob/main/notpadadmin.png?raw=true)
+![AdminPanel](https://firebasestorage.googleapis.com/v0/b/shopplace-41632.appspot.com/o/Githup%2Fnotpadadmin.png?alt=media&token=e40f3b29-0880-484a-adf1-22917a4a48d8&_gl=1*1o2u3e3*_ga*MTc4OTQzODUwNy4xNjk0Nzk3MzI5*_ga_CW55HF8NVT*MTY5Nzg4MTIyMi4yNC4xLjE2OTc4ODI2MTMuMy4wLjA.)
 
 
 ## Learn more
