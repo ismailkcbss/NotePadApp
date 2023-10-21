@@ -1,12 +1,13 @@
 # Notebook application
 
 <p align="center">
+  ![resim1](https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true)
   <a href="https://nodejs.org/en/docs" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true" width="400" alt="Nest Logo" /></a>
   <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/reactpng.png?raw=true" width="300" alt="Nest Logo" /></a>
 </p>
 
 ## Project Description
-It is a personalized notebook application that can be used in daily life. The project includes features such as registration, login, adding notes, and searching for desired notes among notes.
+It is a personalized notebook application that can be used in daily life. The project includes features such as registration, login, admin panel, adding notes, searching for the desired notes between notes.
 
 ## Project testing
 Launches the test runner in the interactive watch mode.
