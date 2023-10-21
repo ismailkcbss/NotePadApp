@@ -1,7 +1,9 @@
 # Notebook application
 
-<p align="center">
   ![resim1](https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true)
+
+
+<p align="center">
   <a href="https://nodejs.org/en/docs" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/nodejspng.png?raw=true" width="400" alt="Nest Logo" /></a>
   <a href="https://legacy.reactjs.org/docs/getting-started.html" target="blank"><img src="https://github.com/ismailkcbss/NotePad-Front/blob/main/reactpng.png?raw=true" width="300" alt="Nest Logo" /></a>
 </p>
